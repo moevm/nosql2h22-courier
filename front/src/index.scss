@@ -1,0 +1,43 @@
+@import "./scss/nullStyle.scss";
+@import "./scss/App.scss";
+@import "./scss/Button.scss";
+@import "./scss/Table.scss";
+@import "./scss/templateStyle.scss";
+@import './scss/LogIn.scss';
+@import './scss/Header.scss';
+
+$bg-img: url("../src/Assets/background.png");
+
+html{
+  font-size: 0.052vw;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: $bg-img;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+#root{
+  
+  background-attachment: scroll;
+}
+
+code {
+  font-family:  source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(./Assets/fonts/Inter-Regular.otf) format("otf")
+}

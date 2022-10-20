@@ -1,0 +1,55 @@
+$successColor : #89C259;
+$dangerColor : #FE3A3B;
+$warningColor : #EC8C46;
+$defaultColor : rgb(128, 128, 128);
+
+@mixin styledButton($color){
+    background-color: $color;
+    transition: all 0.7s ease;
+    padding: 15rem 50rem;
+    display: inline-flex;
+    &:hover{
+        background-color: rgba($color: $color, $alpha: 0.7);
+    
+    }
+    img{
+        margin-left: 10rem;
+        width: 16rem;
+        height: 16rem;
+    }
+}
+
+.button{
+ 
+    color: white;
+    border-radius: 10rem;
+    overflow: hidden;
+    background-color: black;
+    &__default{
+        @include styledButton($defaultColor);
+    }
+
+    &__success{
+        @include styledButton($successColor);
+        font-size: 26rem
+    }
+
+    &__danger{
+        @include styledButton($dangerColor);
+    }
+
+    &__warning{
+        @include styledButton($warningColor);
+    }
+}
+
+.top_right{
+    position: absolute;
+    top: 20rem;
+    right: 20rem;
+    border-radius: 10rem;
+}
+
+.txt_black{
+    color: black;
+}

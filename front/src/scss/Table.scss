@@ -1,0 +1,19 @@
+table, th, td {
+    border:1rem solid black;
+    
+    border-spacing: 0;
+}
+
+th{
+    padding: 15rem;
+}
+td{
+    padding: 20rem 25rem;
+    text-align: center;
+}
+
+table{
+    overflow: hidden;
+    border-radius: 12rem;
+    background-color: rgba($color: #D9D9D9, $alpha: 0.4);
+}
