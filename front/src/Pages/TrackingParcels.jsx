@@ -14,6 +14,12 @@ function TrackingParcels() {
     const [trackerStatus, setTrackerStatus] = useState();
     const [trackerId, setTrackerId] = useState();
 
+    const toInitState = () =>{
+        setTreckerError('');
+        setTrackerStatus();
+        setTrackerId();
+    }
+
     const checkTrackNum = () => {
         try {
             let inputValue = trackNumber.current.value;
@@ -37,18 +43,19 @@ function TrackingParcels() {
 
     return (
         <CenterPage>
-            <Button onClick={() => navigate('/')} text="На главную" className={buttonStyle.success + " top_right txt_black"} />
-            <CompanyLogo />
+            <Button onClick={() => navigate('/')} className={buttonStyle.success + " top_right txt_black button__fs26"} >На главную</Button>
+            <div className='centering_on_page__logo_login'><CompanyLogo /></div>
             <Container className={containerStyleTEmplate.login}>
                 <div className={trackerError?"container__wrapped_warning":"container__wrapped"}>{trackerError?"Ошибка":"Отследить посылку"}</div>
 
                 {!(trackerError || trackerStatus) && <>
                     <InputTitleup className={inputStyleTemplate.login} placeholder={"Трек номер"} refTo={trackNumber}></InputTitleup>
-                    <Button text="Отследить" className={buttonStyle.success} style={{ marginTop: "48rem" }} onClick={checkTrackNum} />
+                    <Button  className={buttonStyle.success + 'button__fs26'} style={{ marginTop: "48rem" }} onClick={checkTrackNum} >Отследить</Button>
                 </>}
                 {trackerError &&
                     <>
                         <p>Заказа с номером {trackerId} <br/> не существует</p>
+                        <Button  className={buttonStyle.success + 'button__fs26'} style={{ marginTop: "48rem" }} onClick={toInitState} >К трекеру</Button>
                     </>
                 }
 

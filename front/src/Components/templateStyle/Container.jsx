@@ -4,6 +4,7 @@ import React from 'react'
 export const containerStyleTEmplate = {
   profile: "container__profile",
   login: "container__log_in",
+  logout: "container__log_out",
   order: "container__order",
   default: "container__default"
 

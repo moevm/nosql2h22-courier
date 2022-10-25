@@ -5,11 +5,12 @@
 @import "./scss/templateStyle.scss";
 @import './scss/LogIn.scss';
 @import './scss/Header.scss';
+@import './scss/NavLinks.scss';
 
 $bg-img: url("../src/Assets/background.png");
 
 html{
-  font-size: 0.052vw;
+  font-size: 0.05208333333333334vw;
 }
 
 body {
@@ -19,14 +20,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: $bg-img;
-  background-size: 100% 100%;
+
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: $bg-img;
+
 }
 
 #root{
-  
-  background-attachment: scroll;
+  height: 100%;
+
 }
 
 code {

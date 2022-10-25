@@ -14,7 +14,7 @@ function InputTitleup(props) {
         <div className='custom_input'>
             <div className={props.className} >
                 <p>{props.placeholder}</p>
-                <input ref={props.refTo} type={props.type} />
+                <input ref={props.refTo} type={props.type} pattern={props.pattern} />
             </div>
         </div>
 

@@ -1,0 +1,53 @@
+$linkMargintop: 15rem;
+
+.custom_select {
+  &__button {
+    background-color: inherit;
+    font-size: 24rem;
+    width: 90%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $linkMargintop;
+  }
+
+  &__img {
+    height: 16rem;
+    transition: transform 0.7s ease;
+  }
+
+  .rotate {
+    transform: rotateX(180deg);
+  }
+
+  &__option {
+    margin-left: 48rem;
+    font-size: 20rem;
+    margin-top: $linkMargintop;
+    
+    & > a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+        color: #585757;
+      }
+    }
+  }
+}
+
+nav {
+  font-size: 24rem;
+  & > ul {
+    & > li {
+      margin-top: $linkMargintop;
+      & > a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          color: #585757;
+        }
+      }
+    }
+  }
+}

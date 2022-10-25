@@ -3,101 +3,167 @@ $dangerColor: #fe3a3b;
 $warningColor: #ec8c46;
 $defaultColor: rgb(128, 128, 128);
 
+$bgc: #d9d9d9;
+$bgcalpha: rgba(
+  $color: #d9d9d9,
+  $alpha: 0.6,
+);
+
 .centering_on_page {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-    flex-direction: column;
-	align-items: center;
-	justify-content: center;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &__logo_login {
+    height: 64rem;
+    font-size: 22rem;
+    margin: 26rem;
+  }
+}
+
+@mixin styledContainer() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $bgcalpha;
+  border-radius: 12rem;
+  & > p {
+    font-size: 32rem;
+    margin: 15rem;
+    text-align: center;
+  }
 }
 
 .container {
-	position: relative;
+  position: relative;
 
-    p{
-        font-size: 32rem;
-        margin: 15rem;
-        text-align: center;
+  .mes {
+    margin-top: 10rem;
+    font-size: 20rem;
+  }
+  &__default {
+    background-color: $bgc;
+    border-radius: 12rem;
+  }
+
+  &__profile {
+  }
+
+  &__log_in {
+    @include styledContainer();
+    padding: 122rem 110rem 50rem;
+  }
+
+  &__log_out {
+    @include styledContainer();
+    padding-bottom: 46rem;
+    & > img {
+      height: 164rem;
+      margin: 46rem 256rem 22rem;
     }
-	.mes{
-        margin-top: 10rem;
-        font-size: 20rem;
+
+    & > h2 {
+      font-weight: 600;
+      font-size: 32rem;
+      padding-bottom: 28rem;
     }
-	&__default {
-		background-color: #d9d9d9;
-		border-radius: 12rem;
-	}
 
-	&__profile {
-	}
+    & > p {
+      font-size: 32rem;
+      padding-bottom: 28rem;
+    }
+  }
 
-	&__log_in {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding: 122rem 110rem 50rem;
-		background-color: rgba($color: #d9d9d9, $alpha: 0.6);
-		border-radius: 12rem;
-	}
+  &__order {
+  }
 
-	&__order {
-	}
+  &__wrapped {
+    position: absolute;
+    top: 0;
+    background-color: #89c259;
+    border-radius: 0 0 20rem 20rem;
+    font-size: 32rem;
+    padding: 19rem 25rem;
+  }
 
-	&__wrapped{
-		position: absolute;
-		top: 0;
-		background-color: #89c259;
-		border-radius: 0 0 20rem 20rem;
-		font-size: 32rem;
-		padding: 19rem 25rem;
-	}
-
-    &__wrapped_warning {
-		position: absolute;
-		top: 0;
-		background-color: #FAA645;
-		border-radius: 0 0 20rem 20rem;
-		font-size: 32rem;
-		padding: 19rem 25rem;
-	}
+  &__wrapped_warning {
+    position: absolute;
+    top: 0;
+    background-color: #faa645;
+    border-radius: 0 0 20rem 20rem;
+    font-size: 32rem;
+    padding: 19rem 25rem;
+  }
 }
 
 .custom_input {
-	&__log_in {
-		p {
-			margin: 10rem 0 15rem;
-			font-size: 32rem;
-		}
-		input {
-			border-radius: 20rem;
-			padding: 25rem 15rem;
-			font-size: 28rem;
-		}
-	}
+  &__log_in {
+    & > p {
+      margin: 10rem 0 15rem;
+      font-size: 32rem;
+    }
+    & > input {
+      border-radius: 20rem;
+      padding: 25rem 15rem;
+      font-size: 28rem;
+    }
+
+    input:invalid{
+      border: red solid 3rem;
+    }
+  }
 }
 
 .company {
-	display: flex;
-	align-items: center;
-	font-size: 24rem;
-	img {
-		height: 64rem;
-		width: 64rem;
-		margin: 26rem;
-	}
+  display: flex;
+  align-items: center;
+  font-size: 20rem;
+  height: 100%;
+  & > img {
+    height: 100%;
+  }
 }
 
-.page{
-    display: flex;
-    &__content{
-        width: 100%;
-    }
-}
+.page {
+  display: flex;
+  &__content {
+    width: 100%;
+  }
 
+  .my-node-enter {
+    opacity: 0;
+    position: relative;
+  }
+  .my-node-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+  .my-node-exit {
+    opacity: 1;
+  }
+  .my-node-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+}
 
 .txt_danger {
-	color: $dangerColor;
+  color: $dangerColor;
 }
+
+.containerPage{
+  margin: 72rem 6rem;
+  display: flex;
+  flex-direction: column;
+
+  & > h3{
+    margin-bottom: 28rem;
+    font-size: 36rem;
+  }
+}
+

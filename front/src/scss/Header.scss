@@ -1,8 +1,53 @@
-.header{
-    height: 100vh;
-    width: 240rem;
-    background-color: #D9D9D9;
-    position: sticky;
-    top: 0;
-    left: 0;
+.header {
+  height: 100vh;
+  width: 240rem;
+  background-color: #d9d9d9;
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__head {
+    height: 80rem;
+    margin: 22rem;
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid black;
+
+    & > img {
+      height: 80.15%;
+      margin-right: 22rem;
+      cursor: pointer;
+      transition: transform 1s ease;
+    }
+  }
+
+  &__text {
+    & > p {
+      font-size: 20rem;
+      margin-top: 12rem;
+    }
+
+    & > h3 {
+      font-size: 24rem;
+      font-weight: 700;
+    }
+  }
+
+  &__content {
+    color: white;
+    margin-left: 22rem;
+  }
+
+  &__footer {
+    color: black;
+    height: 32rem;
+    margin-left: 22rem;
+    margin-bottom: 25rem;
+  }
 }

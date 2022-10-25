@@ -6,16 +6,13 @@ $defaultColor : rgb(128, 128, 128);
 @mixin styledButton($color){
     background-color: $color;
     transition: all 0.7s ease;
-    padding: 15rem 50rem;
-    display: inline-flex;
+    padding: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover{
         background-color: rgba($color: $color, $alpha: 0.7);
     
-    }
-    img{
-        margin-left: 10rem;
-        width: 16rem;
-        height: 16rem;
     }
 }
 
@@ -25,13 +22,18 @@ $defaultColor : rgb(128, 128, 128);
     border-radius: 10rem;
     overflow: hidden;
     background-color: black;
+    
+
+    &__image{
+        margin-left: 10rem;
+        height: 32rem;
+    }
     &__default{
         @include styledButton($defaultColor);
     }
 
     &__success{
         @include styledButton($successColor);
-        font-size: 26rem
     }
 
     &__danger{
@@ -41,6 +43,18 @@ $defaultColor : rgb(128, 128, 128);
     &__warning{
         @include styledButton($warningColor);
     }
+
+    &__fs20{
+        font-size: 20rem;
+    }
+
+    &__fs24{
+        font-size: 24rem;
+    }
+    &__fs26{
+        font-size: 26rem;
+    }
+
 }
 
 .top_right{
