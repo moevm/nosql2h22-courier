@@ -1,0 +1,66 @@
+car = [
+    {
+      _id: ObjectId("635bbabfba4a578fac201742"),
+      number: 'A123AA174',
+      brand: 'GAZ',
+      model: 'GAZEL',
+      free: 'True',
+      ready: 'True',
+      vin: '4Y1SL65848Z411439'
+    }
+  ]
+  
+Users = [
+    {
+      _id: ObjectId("635bba24ba4a578fac20173f"),
+      first_name: 'Sergey',
+      second_name: 'Sorokumov',
+      fathers_name: 'Valerevich',
+      login: 'aaa@aaa.com',
+      password: '123456',
+      timetable: [ [ 'пн', '10:00-17:00' ], [ 'ср', '10:00-17:00' ] ],
+      type: 'c'
+    },
+    {
+      _id: ObjectId("635bba5eba4a578fac201740"),
+      first_name: 'Valentina',
+      second_name: 'Golubeva',
+      fathers_name: 'Petrovna',
+      login: 'bbb@bbb.com',
+      password: '123456',
+      timetable: [],
+      type: 'u'
+    },
+    {
+      _id: ObjectId("635bba84ba4a578fac201741"),
+      first_name: 'Nikita',
+      second_name: 'Ierusalimov',
+      fathers_name: '',
+      login: 'ccc@ccc.com',
+      password: '123456',
+      timetable: [],
+      type: 'u'
+    }
+  ]
+  
+
+Orders = [
+    {
+      _id: ObjectId("635bbc1cba4a578fac201743"),
+      sender_info: [ 'Valentina', 'Golubeva', 'Petrovna' ],
+      recipient_info: [ 'Nikita', 'Ierusalimov', '' ],
+      size: [ 105, 64, 64, 10 ],
+      address: 'улица Профессора Попова, 5, Санкт-Петербург',
+      paid: 'True',
+      expected_date: ISODate("2022-10-28T11:25:16.141Z"),
+      real_date: ISODate("2022-10-28T11:25:16.141Z"),
+      courier_info: [
+        'Sergey',
+        'Sorokumov',
+        'Valerevich',
+        [ 'A123AA174', 'GAZ', 'GAZEL' ]
+      ],
+      complete: 'False'
+    }
+  ]
+  
