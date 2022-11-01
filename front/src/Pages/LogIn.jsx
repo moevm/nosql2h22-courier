@@ -21,19 +21,12 @@ export default function LogIn() {
     const passwordRef = useRef();
     const emailRegExp = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
 
-    const logIn = () => {
-        console.log('dfs')
-        try {
-            const validEmail = new RegExp(emailRegExp);
-            if (!validEmail.test(emailRef.current.value)) throw { message: "Неверный Email" }
-            let answer = Login(emailRef.current.value,passwordRef.current.value)
-            if(answer) navigate(`/main`)
-            else throw { message: "Неверный логин или пароль" }
-        } catch (error) {
-            setAuthError(error.message);
-            console.log(error);
-        }
+    const setError = (error) =>{
+        setAuthError(error)
+    }
 
+    const handlerLogIn = () =>{
+        dispatch(Login(emailRef.current.value,passwordRef.current.value,navigate,setError))
     }
 
 
@@ -46,7 +39,7 @@ export default function LogIn() {
                 <div className='container__wrapped'>Вход в личный кабинет</div>
                 <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef} pattern={emailRegExp}></InputTitleup>
                 <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} ></InputTitleup>
-                <Button className={Button.style.success + "button__fs26"} style={{ marginTop: "48rem" }} onClick={() => dispatch(logIn())} > Войти</Button>
+                <Button className={Button.style.success + "button__fs26"} style={{ marginTop: "48rem" }} onClick={handlerLogIn} > Войти</Button>
                 {authError && <p className='txt_danger mes'>{authError}</p>}
             </Container>
         </CenterPage>
