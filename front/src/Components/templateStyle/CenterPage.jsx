@@ -1,9 +1,11 @@
 import React from 'react'
 
 function CenterPage(props) {
+  const { style, children } = props;
+
   return (
-    <div className='centering_on_page' style={props.style}>
-        {props.children}
+    <div className='centering_on_page' style={style}>
+      {children}
     </div>
   )
 }

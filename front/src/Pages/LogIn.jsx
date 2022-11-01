@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Button, { buttonStyle } from '../Components/Button'
-import InputTitleup, { inputStyleTemplate } from '../Components/InputTitleup'
+
+
+import Button from '../Components/Button'
+import InputTitleup from '../Components/InputTitleup'
 import CenterPage from '../Components/templateStyle/CenterPage'
 import CompanyLogo from '../Components/templateStyle/CompanyLogo'
-import Container, { containerStyleTEmplate } from '../Components/templateStyle/Container'
+import Container from '../Components/templateStyle/Container'
 
 export default function LogIn() {
     const navigate = useNavigate();
@@ -38,13 +40,13 @@ export default function LogIn() {
 
     return (
         <CenterPage>
-            <Button onClick={() => navigate('/tracking')} className={buttonStyle.success + " top_right txt_black button__fs26"}>Трекинг поссылок</Button>
+            <Button onClick={() => navigate('/tracking')} className={Button.style.success + " top_right txt_black button__fs26"}>Трекинг поссылок</Button>
             <div className='centering_on_page__logo_login'><CompanyLogo /></div>
-            <Container className={containerStyleTEmplate.login}>
+            <Container className={Container.style.login}>
                 <div className='container__wrapped'>Вход в личный кабинет</div>
-                <InputTitleup className={inputStyleTemplate.login} placeholder={"Логин"} type='email' refTo={emailRef} pattern={emailRegExp}></InputTitleup>
-                <InputTitleup className={inputStyleTemplate.login} placeholder={"Пароль"} type='password' refTo={passwordRef} ></InputTitleup>
-                <Button className={buttonStyle.success + "button__fs26"} style={{ marginTop: "48rem" }} onClick={logIn} > Войти</Button>
+                <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef} pattern={emailRegExp}></InputTitleup>
+                <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} ></InputTitleup>
+                <Button className={Button.style.success + "button__fs26"} style={{ marginTop: "48rem" }} onClick={logIn} > Войти</Button>
                 {authError && <p className='txt_danger mes'>{authError}</p>}
             </Container>
         </CenterPage>

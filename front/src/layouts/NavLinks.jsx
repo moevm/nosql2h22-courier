@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom';
-import arrow from '../Assets/img/dropDown.png';
 import { CSSTransition } from 'react-transition-group'
+
+import arrow from '../Assets/img/dropDown.png';
+
 
 const existPages = {
     driver: {
@@ -68,6 +70,7 @@ function DropDownList(props) {
                     timeout={300}
                     classNames="my-node"
                     unmountOnExit
+                    mountOnEnter
                     onEnter={() => setisDroped(true)}
                     onExited={() => setisDroped(false)}>
                    <div ref={ref}>{option}</div>

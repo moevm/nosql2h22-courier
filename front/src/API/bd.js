@@ -1,4 +1,4 @@
-import Button, { buttonStyle } from "../Components/Button";
+import Button from "../Components/Button";
 import check from '../Assets/img/check.png'
 
 export const heaaders = {
@@ -22,8 +22,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '18',
@@ -33,8 +33,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '17',
@@ -44,8 +44,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '16',
@@ -55,8 +55,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '15',
@@ -66,8 +66,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '14',
@@ -77,8 +77,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '13',
@@ -88,8 +88,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '12',
@@ -99,8 +99,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '11',
@@ -110,8 +110,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '10',
@@ -121,8 +121,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '9',
@@ -132,8 +132,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '8',
@@ -143,8 +143,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '7',
@@ -154,8 +154,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '6',
@@ -165,8 +165,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '5',
@@ -176,8 +176,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '94',
@@ -187,8 +187,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '93',
@@ -198,8 +198,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.success + 'button__fs20'}>Отправлено</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '91',
@@ -209,8 +209,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.warning + 'button__fs20'}>На складе</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.warning + 'button__fs20'}>На складе</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
     {
         id: '92',
@@ -220,8 +220,8 @@ export const data = [
         summ: "5000",
         size: "20x30x10",
         pay: <img src={check}/>,
-        Status: <Button className={buttonStyle.danger + 'button__fs20'}>Не прибыло</Button>,
-        Open: <Button className={buttonStyle.success + 'button__fs20'}>Открыть</Button>,
+        Status: <Button className={Button.style.danger + 'button__fs20'}>Не прибыло</Button>,
+        Open: <Button className={Button.style.success + 'button__fs20'}>Открыть</Button>,
     },
 ];
 
