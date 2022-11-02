@@ -1,4 +1,3 @@
-
 import { setUser } from "../Reducers/reducer/userReducer";
 import request from "../packages/API/index";
 import storage from "../packages/storage";
@@ -49,4 +48,3 @@ export const auth = (navigate) => {
         }
     }
 }
-
