@@ -4,6 +4,13 @@ import jwt
 import datetime
 
 
+def create_jwt(user):
+    user['exp'] = datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+    token = jwt.encode(user, app.secret_key)
+    del user['exp']
+    return token.decode("utf-8")
+
+
 @app.route('/api/login', methods=["POST"])
 def login():
     args = request.get_json()
@@ -11,10 +18,7 @@ def login():
     if user is not None:
         del user['password']
         user['_id'] = str(user['_id'])
-        user['exp'] = datetime.datetime.utcnow() + datetime.timedelta(minutes=2)
-        token = jwt.encode(user, app.secret_key)
-        del user['exp']
-        return jsonify({"token": token.decode("utf-8"), "user": user})
+        return jsonify({"token": create_jwt(user), "user": user})
     return make_response('Incorrect login or password', 401)
 
 
@@ -33,10 +37,9 @@ def singUp():
 @app.route('/api/auth', methods=["POST"])
 def auth():
     args = request.get_json()
-    print(args['token'])
     try:
-        data = jwt.decode(args['token'], app.secret_key)
+        user = jwt.decode(args['token'], app.secret_key)
     except:
         return make_response('Signature has expired', 400)
-    del data['exp']
-    return jsonify({"user": data})
+
+    return jsonify({"user": user, "token": create_jwt(user)})
