@@ -99,6 +99,12 @@ $bgcalpha: rgba(
     font-size: 32rem;
     padding: 19rem 25rem;
   }
+
+  &__button-line{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .custom_input {

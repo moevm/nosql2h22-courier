@@ -25,7 +25,8 @@ function Button(props) {
 Button.style = {
     success: "success ",
     warning: "warning ",
-    danger: "danger "
+    danger: "danger ",
+    default: "default "
 }
 
 export default Button
