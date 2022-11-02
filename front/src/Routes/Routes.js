@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import storage, {setStorage} from "../packages/storage";
 
 import { auth } from '../Actions/login';
@@ -40,7 +40,7 @@ function Router() {
 
     }, [])
 
-    
+    const isAuth = useSelector(state => state.user.isAuth);
 
     return (
         <Routes>
