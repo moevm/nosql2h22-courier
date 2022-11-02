@@ -2,7 +2,7 @@ import React from 'react'
 
 import Table from '../Components/Table';
 import CenterPage from '../Components/templateStyle/CenterPage';
-import { data, heaaders } from '../API/bd';
+import { data, heaaders } from '../packages/API/bd';
 
 
 

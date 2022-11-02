@@ -1,5 +1,5 @@
-import Button from "../Components/Button";
-import check from '../Assets/img/check.png'
+import Button from "../../Components/Button";
+import check from '../../Assets/img/check.png'
 
 export const heaaders = {
     number: "Номер заказа",

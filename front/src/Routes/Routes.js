@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import storage, {setStorage} from "../packages/storage";
 
 import { auth } from '../Actions/login';
 import Header from '../layouts/Header';
@@ -32,11 +33,14 @@ function Router() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(localStorage.getItem('token')){
+        setStorage(localStorage);
+        if(storage.token.getToken()){
             dispatch(auth(navigate));
         }
 
     }, [])
+
+    
 
     return (
         <Routes>
