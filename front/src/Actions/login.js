@@ -44,7 +44,8 @@ export const auth = (navigate) => {
             dispatch(setUser(res.data.user));
             storage.token.setToken(res.data.token);
             storage.login.setLogin(res.data.user.login);
-            navigate('/main');
+            if (window.location.pathname == '/') navigate('/main');
+            
         } catch (e) {
             navigate('/');
             storage.token.removeToken();
