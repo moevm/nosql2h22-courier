@@ -1,14 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Button  from '../Components/Button'
 import CenterPage from '../Components/templateStyle/CenterPage'
-import Container from '../Components/templateStyle/Container'
-import logout from '../Assets/img/logout.png'
+import Container, { containerStyleTEmplate } from '../Components/templateStyle/Container'
+import logoutImg from '../Assets/img/logout.png'
 import avatar from '../Assets/img/Accountant.png'
 
+import { logout } from '../Reducers/reducer/userReducer'
 
 function Main({}) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   let name = "Maria" //данные надо будет брать из одного файла
   let shift = "Пн-Пт 10:00 - 19:00";
@@ -16,6 +19,7 @@ function Main({}) {
 
   const logoutUser = () =>{
     //сделать логику по выходу из аккаунта
+    dispatch(logout())
     navigate("/");
   }
 
@@ -26,7 +30,7 @@ function Main({}) {
         <h2>{name}</h2>
         <p>Должность: {position}</p>
         <p>График: {shift}</p>
-        <Button  onClick={logoutUser} className={Button.style.danger + 'button__fs20'} image={logout}>LogOut</Button>
+        <Button  onClick={logoutUser} className={Button.style.danger + 'button__fs20'} image={logoutImg}>LogOut</Button>
       </Container>
     </CenterPage>
   )

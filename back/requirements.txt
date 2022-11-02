@@ -1,0 +1,5 @@
+pymongo
+numpy
+flask
+flask_cors
+pyjwt==1.7.1
