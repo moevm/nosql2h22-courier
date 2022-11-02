@@ -1,13 +1,15 @@
-import React from 'react'
-import { Route, Routes } from "react-router-dom";
+import React, {useEffect} from 'react'
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+
+import { auth } from '../Actions/login';
 import Header from '../layouts/Header';
 import Allorders from '../Pages/Allorders';
-import { CSSTransition } from 'react-transition-group'
-
 import LogIn from '../Pages/LogIn'
 import Main from '../Pages/Main'
 import TrackingParcels from '../Pages/TrackingParcels';
 import Shifts from '../Pages/Shifts';
+
 
 function WrapperPage(JsxPage) {
 
@@ -25,6 +27,17 @@ function WrapperPage(JsxPage) {
 }
 
 function Router() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem('token')){
+            dispatch(auth(navigate));
+        }
+
+    }, [])
+
     return (
         <Routes>
             <Route index exact path="/" element={<LogIn />} />
