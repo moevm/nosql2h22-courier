@@ -1,7 +1,7 @@
 
 import makeRequest from "../makeRequest";
 
-export const postAuth = async (token) => {
+export const post = async (token) => {
     return await makeRequest({
         url: '/api/auth',
         method: 'POST',

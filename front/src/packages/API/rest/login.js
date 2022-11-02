@@ -1,6 +1,6 @@
 import makeRequest from "../makeRequest";
 
-export const postLogIn = async (email, password) => {
+export const post = async (email, password) => {
     return await makeRequest({
         url: '/api/login',
         method: 'POST',
