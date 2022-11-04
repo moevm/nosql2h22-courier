@@ -5,13 +5,22 @@ from bson import ObjectId
 from io import StringIO
 
 
+def get_orders(filter):
+    if '_id' in filter.keys():
+        filter['_id'] = ObjectId(filter['_id'])
+    orders = [i for i in db.orders.find(filter)]
+    [i.__setitem__('_id', str(i["_id"])) for i in orders]
+    return orders
+
 @app.route('/api/orders', methods=["GET"])
 def orders():
     args = request.args.get('filters')
     io = StringIO(args)
     filters = json.load(io)
-    if '_id' in filters.keys():
-        filters['_id'] = ObjectId(filters['_id'])
-    orders = [i for i in db.orders.find(filters)]
-    [i.__setitem__('_id', str(i["_id"])) for i in orders]
-    return jsonify({"orders": orders}), 200
+    return jsonify({"orders": get_orders(filters)}), 200
+
+
+@app.route('/api/tracker/find', methods=['POST'])
+def tracker():
+    args = request.get_json()
+    return jsonify({"current_tracker_info": get_orders(args)}), 200
