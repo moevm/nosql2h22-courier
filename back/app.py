@@ -10,7 +10,8 @@ app.secret_key = b'\xf5\xd9v\xe6$\xa1\xb4N.C0\xcc\xe2\xb5i\x8f'
 client = pymongo.MongoClient('localhost', 27017)
 db = client.courier
 
-from utils import auth
+import utils.auth
+import requests.orders
 
 
 @app.route('/', methods=['get'])
