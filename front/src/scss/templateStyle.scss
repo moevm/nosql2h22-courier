@@ -112,17 +112,38 @@ $bgcalpha: rgba(
     & > p {
       margin: 10rem 0 15rem;
       font-size: 32rem;
+      
     }
     & > input {
       border-radius: 20rem;
       padding: 25rem 15rem;
       font-size: 28rem;
     }
+    
+  }
+  input:invalid{
+   
+    box-shadow:inset 0px 0px 0px 1px red;
+  }
 
-    input:invalid{
-      border: red solid 3rem;
+  &__display_flex{
+    display: flex;
+    align-items: center;
+    & > p {
+      margin: 10rem 0 15rem;
+      font-size: 28rem;
+      padding-right: 10rem;
     }
   }
+
+  &__sign_up{
+   
+    & > input {
+      border-radius: 20rem;
+      padding: 15rem 15rem;
+      font-size: 24rem;
+    }
+  } 
 }
 
 .company {
@@ -176,5 +197,10 @@ $bgcalpha: rgba(
     margin-bottom: 28rem;
     font-size: 36rem;
   }
+}
+
+
+.container_sz{
+  height: 50%;
 }
 

@@ -1,8 +1,9 @@
 import { setUser } from "../Reducers/reducer/userReducer";
 import request from "../packages/API";
 import storage from "../packages/storage";
+import isValidData from "../Components/isValidData";
 
-export const Registration = ( 
+export const Registration = async (
     firstName,
     secondName,
     fatherName,
@@ -11,18 +12,18 @@ export const Registration = (
     navigate,
     setError) => {
 
-    return async dispatch => {
+    try {
+          
+        if (!isValidData(email)) throw { response: { data: "Неверный Email" } }
 
-        try {
-         
-            let res = await request.signup.post(firstName,secondName,fatherName,email, password);
+        let res = await request.signup.post(firstName, secondName, fatherName, email, password);
 
-            if (!res.status) throw { response: { data: "Что-то пошло не так..." } }
-        } catch (error) {
-            console.log(error);
-            setError(error);
-            
-        }
-
+        if (!res.status) throw { response: { data: "Что-то пошло не так..." } }
+        return true;
+    } catch (error) {
+        console.log(error);
+        setError(error.response.data);
+        return false;
     }
+
 }

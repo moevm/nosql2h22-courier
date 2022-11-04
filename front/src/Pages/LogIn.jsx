@@ -14,7 +14,7 @@ import Container from '../Components/templateStyle/Container'
 
 export default function LogIn() {
     const navigate = useNavigate();
-    const [authError, setAuthError] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const [isRegistration, setIsRegistration] = useState(false);
     const dispatch = useDispatch();
 
@@ -26,29 +26,42 @@ export default function LogIn() {
     const tNameRef = useRef();
 
     const setError = (error) => {
-        setAuthError(error)
+        setErrorMessage(error)
     }
 
     const handlerLogIn = () => {
         dispatch(Login(emailRef.current.value, passwordRef.current.value, navigate, setError))
     }
 
-    const handleRegistration = () => {
+    const handleRegistration = async () => {
         if (isRegistration) {
-
-            dispatch(Registration(fNameRef.current.value,
+            if (fNameRef.current.value == '' || sNameRef.current.value == '' ||
+                emailRef.current.value == '' || passwordRef.current.value == '') {
+                setErrorMessage("Не все поля введены!")
+                return;
+            }
+            let isSuccess = await Registration(
+                fNameRef.current.value,
                 sNameRef.current.value,
                 tNameRef.current.value,
                 emailRef.current.value,
                 passwordRef.current.value,
-                navigate, setError))
-            if(!authError) setIsRegistration(false);
+                navigate, setError)
+            if (isSuccess) {
+                setErrorMessage('');
+                setIsRegistration(false);
+            }
+
             return;
         }
-        setAuthError('')
+        setErrorMessage('');
         setIsRegistration(true);
     }
 
+
+    const isEnterPresed = (e, func) => {
+        if (e.key === 'Enter') func();
+    }
 
 
     return (
@@ -59,20 +72,21 @@ export default function LogIn() {
                 <div className='container__wrapped'>Вход в личный кабинет</div>
                 {!isRegistration &&
                     <>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} ></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef} onKeyDown={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} onKeyDown={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
                     </>
                 }
 
                 {isRegistration &&
-                    <>
-                        
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Имя"} type='text' refTo={fNameRef} ></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Фамилия"} type='text' refTo={sNameRef} ></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Отчество"} type='text' refTo={tNameRef} ></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} ></InputTitleup>
-                    </>
+
+                    <div className='container_sz'>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Имя"} type='text' refTo={fNameRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Фамилия"} type='text' refTo={sNameRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Отчество"} type='text' refTo={tNameRef} onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Логин"} type='email' refTo={emailRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Пароль"} type='password' refTo={passwordRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                    </div>
+
                 }
 
 
@@ -80,7 +94,7 @@ export default function LogIn() {
                     <Button className={Button.style.success + "button__fs26"} style={{ marginTop: "48rem" }} onClick={isRegistration ? () => setIsRegistration(false) : handlerLogIn} >{isRegistration ? "Назад" : "Войти"}</Button>
                     <Button className={Button.style.default + "button__fs26"} style={{ marginTop: "48rem" }} onClick={handleRegistration} > Регистрация</Button>
                 </div>
-                {authError && <p className='txt_danger mes'>{authError}</p>}
+                {errorMessage && <p className='txt_danger mes'>{errorMessage}</p>}
             </Container>
         </CenterPage>
     )
