@@ -1,0 +1,8 @@
+{"_id":{"$oid":"63650d696f0585e29546c41e"},"number":"С065MK 78RUS","brand":"ГАЗель","model":"ГАЗ-3302","free":false,"ready":true,"vin":"W1HFSCFQKJC12DALH"}
+{"_id":{"$oid":"63650d696f0585e29546c41f"},"number":"H283TX 78RUS","brand":"ГАЗель","model":"ГАЗ-32213","free":true,"ready":true,"vin":"FLB6DL950COE4T5H6"}
+{"_id":{"$oid":"63650d696f0585e29546c420"},"number":"C423CO 78RUS","brand":"ГАЗель","model":"ГАЗ-32214","free":true,"ready":false,"vin":"FKVP85D0E62J7K90X"}
+{"_id":{"$oid":"63650d696f0585e29546c421"},"number":"X789ET 78RUS","brand":"ГАЗель","model":"ГАЗ-3302","free":false,"ready":true,"vin":"K3VD96GNX4ZI966MT"}
+{"_id":{"$oid":"63650d696f0585e29546c422"},"number":"A001MM 78RUS","brand":"ГАЗель","model":"ГАЗ-32213","free":true,"ready":true,"vin":"DO604BLOP25XK95VP"}
+{"_id":{"$oid":"63650d696f0585e29546c423"},"number":"E102CH 78RUS","brand":"ГАЗель","model":"ГАЗ-32214","free":true,"ready":true,"vin":"OSVKBHTH566FXFJH6"}
+{"_id":{"$oid":"63650d696f0585e29546c424"},"number":"H882EP 78RUS","brand":"Mercedes","model":"Mercedes-Benz Atego 1224 L","free":true,"ready":true,"vin":"A6DHLBNM45GH89CFG"}
+{"_id":{"$oid":"63650d696f0585e29546c425"},"number":"K560PO 78RUS","brand":"Volvo","model":"Volvo FE","free":true,"ready":false,"vin":"HKH75FG456KJNK667"}
