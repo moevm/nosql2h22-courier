@@ -10,10 +10,14 @@ import avatar from '../Assets/img/Accountant.png'
 
 import { logout } from '../Reducers/reducer/userReducer'
 
-function Main({}) {
+
+function Main(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let name = "Maria" //данные надо будет брать из одного файла
+  const currentUser = props.user
+
+  let name = currentUser.first_name;
+  console.log(name,currentUser.first_name)
   let shift = "Пн-Пт 10:00 - 19:00";
   let position = 'Администратор';
 

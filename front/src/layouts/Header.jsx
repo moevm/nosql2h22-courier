@@ -1,25 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { currentUser } from '../API/bd';
+import { currentUser } from '../packages/API/bd';
 import CompanyLogo from '../Components/templateStyle/CompanyLogo'
 import NavLinks from './NavLinks';
 import avatar from '../Assets/img/Accountant.png'
 
 
 
-function Header() {
+function Header(props) {
   const navigate = useNavigate();
-  //get shit data
-  let curUser = currentUser;
+  const {user} = props
+
   let image = "./img/Accountant.png";
-  let name = curUser.name;
-  let position = curUser.position;
-
-  //get allowed page
-  let allowedPage = 'all';
-
-
+  let name = user.first_name;
+  let position = "accountant";// user.role;
 
   return (
     <div className='header'>
