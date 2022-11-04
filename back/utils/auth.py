@@ -27,11 +27,13 @@ def singUp():
     args = request.get_json()
     args['timetable'] = []
     args['type'] = 'u'
-    try:
-        res = db.users.insert_one(args)
-        return make_response('ok', 200)
-    except:
-        return make_response('some problems', 400)
+    if db.users.find_one({"login": args['login']}) is None:
+        try:
+            res = db.users.insert_one(args)
+            return make_response('ok', 200)
+        except:
+            return make_response('some problems', 400)
+    return make_response('User already exists', 401)
 
 
 @app.route('/api/auth', methods=["POST"])

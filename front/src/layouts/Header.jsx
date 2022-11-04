@@ -8,18 +8,13 @@ import avatar from '../Assets/img/Accountant.png'
 
 
 
-function Header() {
+function Header(props) {
   const navigate = useNavigate();
-  //get shit data
-  let curUser = currentUser;
+  const {user} = props
+
   let image = "./img/Accountant.png";
-  let name = curUser.name;
-  let position = curUser.position;
-
-  //get allowed page
-  let allowedPage = 'all';
-
-
+  let name = user.first_name;
+  let position = "accountant";// user.role;
 
   return (
     <div className='header'>
