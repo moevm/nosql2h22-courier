@@ -6,6 +6,7 @@ import InputTitleup from '../Components/InputTitleup'
 import CenterPage from '../Components/templateStyle/CenterPage'
 import CompanyLogo from '../Components/templateStyle/CompanyLogo'
 import Container from '../Components/templateStyle/Container'
+import request from '../packages/API'
 
 const WrapperTracker = (props) => {
     const { children } = props
@@ -24,29 +25,29 @@ const WrapperTracker = (props) => {
 
 function TrackingParcels() {
     const trackNumber = useRef();
-    const [trackerStatus, setTrackerStatus] = useState();
+    const [tracker, setTracker] = useState();
     const [trackerId, setTrackerId] = useState();
     const [currentPage, setCurrentPage] = useState();
 
     const toInitState = () => {
-        setTrackerStatus();
+        setTracker();
         setTrackerId();
         setCurrentPage();
     }
 
-    const checkTrackNum = () => {
+    const checkTrackNum = async () => {
         try {
-            
+
             let inputValue = trackNumber.current.value;
+            setTrackerId(inputValue);
             if (inputValue) {
-                let checkTracker = {}; //getTrackerInfo(inputValue);
-                if (checkTracker.id) {
-                    setTrackerStatus(checkTracker.status);
-                    setTrackerId(checkTracker.id);
+                const currTracker = (await request.tracker.post(inputValue)).data.current_tracker_info[0];
+                console.log(currTracker)
+                if (currTracker._id) {
+                    setTracker(currTracker);
                     setCurrentPage('tracker is found');
                 } else {
-                    setTrackerId(inputValue);
-                    setTrackerStatus('')
+                    setTracker()
                     throw { errorType: 404, message: "Такого трекера нет" }
                 }
             }
@@ -56,21 +57,26 @@ function TrackingParcels() {
             console.log(error);
         }
     }
-
+    console.log(tracker?.complete)
     switch (currentPage) {
         case "not found tracker":
             return (
                 <WrapperTracker>
                     <div className="container__wrapped_warning" >Ошибка</div>
-                    <p>Заказа с номером {trackerId} <br /> не существует</p>
+                    <p>Заказа с номером "{trackerId}" <br /> не существует</p>
                     <Button className={Button.style.success + 'button__fs26'} style={{ marginTop: "48rem" }} onClick={toInitState} >К трекеру</Button>
                 </WrapperTracker>)
         case 'tracker is found':
             return (
                 <WrapperTracker>
-                    <div className="container__wrapped">Отследить посылку</div>
-                    <p>Поссылка {trackerId}:</p>
-                    <p>{trackerStatus}</p>
+                    
+                        <div className="container__wrapped">Отследить посылку</div>
+                    <div className='container__alightItemStart'>
+                        <p>Поссылка: {trackerId}</p>
+                        <p>Ожидаемое время доставки: {tracker.expected_date}</p>
+                        <p>Статус: {tracker.complete ? "Завершено" : "Не завершено"}</p>
+                        <p>Курьер: {tracker.courier_info[0]} {tracker.courier_info[1]}</p>
+                    </div>
                 </WrapperTracker>
             )
         default:
