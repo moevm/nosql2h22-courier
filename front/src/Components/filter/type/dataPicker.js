@@ -6,31 +6,27 @@ export function DateFilter(props) {
     const {
         queryKey,
     } = props;
-
+    const [state, setState] = useState('')
     const refInput = useRef();
+
     useEffect(()=>{
         let value = filter.setQueryValue(queryKey);
         if(value)refInput.current.value = value;
         
     },[])
 
-    const [state, setState] = useState('')
+    
     const onChangeHandler = (event) => {
-        const value = event.target.value;
-        if (value) {
-            setState(value)
-        }
+        setState(event.target.value)
     }
     const isEnterPresed = (e) => {
-      if (state && e.key == "Enter") {
+      if (e.key == "Enter") {
         filter.SendFilter(queryKey,state);
       }
     }
     
     const submitData = (event) => {
-      if (state) {
-        filter.SendFilter(queryKey,state);
-      }
+      filter.SendFilter(queryKey,state);
       event.preventDefault();
     }
 

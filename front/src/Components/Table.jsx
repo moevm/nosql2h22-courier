@@ -1,38 +1,13 @@
 import React from 'react'
+import BootstrapTable from 'react-bootstrap-table-next';
 
-function WrapperTr(props) {
-    return <tr>{props.children}</tr>
-}
 
-function createThElem(data) {
-    let result = [];
-    for (let i of Object.values(data)) {
-        result.push(<th key={i}>{i}</th>);
-    }
-
-    return <WrapperTr key={'tableHeaders'}>{result}</WrapperTr>;
-}
-
-function createRow(row, header) {
-    let line = [];
-    let result = []
-    for (let i in row) {
-        let elem = row[i];
-        for (let j of Object.keys(elem)) {
-            line.push(<td key={elem._id+i}>{elem[j]}</td>);
-        }
-        result.push(<WrapperTr key={row[i]._id}>{line}</WrapperTr>);
-        line = [];
-    }
-    return result;
-
-}
 
 const prepareRowData = (row, header) => {
     let rowData = [];
     for (let i in row) {
         rowData.push({});
-        for (let j of Object.keys(header)) {
+        for (let j of header) {
             rowData[i][j] = row[i][j];
 
         }
@@ -44,22 +19,20 @@ const prepareRowData = (row, header) => {
 function Table(props) {
     const {
         header,
-        row
+        row,
+        init,
+        keyField = init[0]
     } = props
-    let jsxHeaders = createThElem(header);
-    let rowNew = prepareRowData(row, header);
-    let jsxRow = createRow(rowNew);
+
+    let rowNew = prepareRowData(row, init);
+
 
     return (
-        <table>
-             
-            
-                {jsxHeaders}
-            
-                {jsxRow}
-            
-       
-        </table>
+        <BootstrapTable striped hover
+            keyField={keyField}
+            data={rowNew}
+            columns={header}
+        />
     )
 }
 

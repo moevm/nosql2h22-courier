@@ -11,14 +11,12 @@ export function SelectFilter(props) {
     const [values, setValues] = useState(<></>);
 
     const onChangeHandler = (event) => {
-        if (event.target.value) {
-            filter.SendFilter(queryKey, event.target.value);
-        }
+        filter.SendFilter(queryKey, event.target.value);
     }
 
     useEffect(() => {
         let val = filter.setQueryValue(queryKey);
-        let jsxOption = [<option value='clear'></option>];
+        let jsxOption = [<option value=''></option>];
         for (let i of Object.keys(value)) {
             jsxOption.push(val == i?<option selected key={i} value={i}>{value[i]}</option>:<option key={i} value={i}>{value[i]}</option>);
         }

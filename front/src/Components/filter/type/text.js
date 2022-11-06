@@ -19,7 +19,7 @@ export function TextFilter(props) {
     },[])
 
     const isEnterPresed = (e) => {
-        if (e.key === 'Enter' && e.target.value) filter.SendFilter(queryKey,e.target.value);
+        if (e.key === 'Enter') filter.SendFilter(queryKey,e.target.value);
     }
 
     return (

@@ -5,8 +5,11 @@ import queryString from 'query-string';
 const SendFilter = (key, value) => {
 
   let parsedQuery = queryString.parse(window.location.search);
-  //console.log(window.location.search)
-  parsedQuery[key] = value;
+  if(!value == ''&&!parsedQuery[key]){
+    parsedQuery[key] = value;
+  }else if (value == '' && parsedQuery[key]){
+    delete parsedQuery[key];
+  }
 
   const stringified = queryString.stringify(parsedQuery);
 
@@ -15,8 +18,6 @@ const SendFilter = (key, value) => {
     window.history.pushState('', '', newurl);
     window.location.search = stringified;
   }
-
-
 }
 
 const setQueryValue = (key)=>{
