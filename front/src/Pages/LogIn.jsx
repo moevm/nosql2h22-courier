@@ -72,19 +72,19 @@ export default function LogIn() {
                 <div className='container__wrapped'>Вход в личный кабинет</div>
                 {!isRegistration &&
                     <>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef} onKeyDown={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} onKeyDown={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.login} placeholder={"Логин"} type='email' refTo={emailRef} onKeyUp={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.login} placeholder={"Пароль"} type='password' refTo={passwordRef} onKeyUp={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
                     </>
                 }
 
                 {isRegistration &&
 
                     <div className='container_sz'>
-                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Имя"} type='text' refTo={fNameRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Фамилия"} type='text' refTo={sNameRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Отчество"} type='text' refTo={tNameRef} onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Логин"} type='email' refTo={emailRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
-                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Пароль"} type='password' refTo={passwordRef} isNecessarily onKeyDown={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Имя"} type='text' refTo={fNameRef} isNecessarily onKeyUp={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Фамилия"} type='text' refTo={sNameRef} isNecessarily onKeyUp={(e) => isEnterPresed(e, handlerLogIn)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Отчество"} type='text' refTo={tNameRef} onKeyUp={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Логин"} type='email' refTo={emailRef} isNecessarily onKeyUp={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
+                        <InputTitleup className={InputTitleup.style.signUp} placeholder={"Пароль"} type='password' refTo={passwordRef} isNecessarily onKeyUp={(e) => isEnterPresed(e, handleRegistration)}></InputTitleup>
                     </div>
 
                 }

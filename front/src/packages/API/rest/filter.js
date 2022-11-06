@@ -1,8 +1,11 @@
 import makeRequest from "../makeRequest";
 
-export const get = async () => {
+export const post = async (value) => {
     return await makeRequest({
         url: `/api/orders`,
-        method: 'POST'
+        method: 'POST',
+        data:{
+            ...value,
+        }
     });
 }

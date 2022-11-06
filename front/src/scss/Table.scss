@@ -1,24 +1,36 @@
 table, th, td {
     border:1rem solid black;
-    
     border-spacing: 0;
 }
 
 th{
-    padding: 15rem;
+    padding: 10rem;
 }
+
 td{
-    padding: 20rem 25rem;
+    padding: 10rem 15rem;
     text-align: center;
-    & > img{
-        height: 32rem;
-    }
+    
+    overflow: hidden;
+    
 }
+
+
 
 table{
     overflow: hidden;
     border-radius: 12rem;
+    font-size: 20rem;
     background-color: rgba($color: #D9D9D9, $alpha: 0.4);
-    font-size: 24rem;
+    width:100%;
+    table-layout: fixed;
 }
 
+.table-cell {
+    word-wrap: break-word;
+    max-height: 200rem;
+    overflow-y: hidden;
+    & > img{
+        height: 32rem;
+    }
+}

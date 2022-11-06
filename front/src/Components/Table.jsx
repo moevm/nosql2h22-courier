@@ -13,41 +13,52 @@ function createThElem(data) {
     return <WrapperTr key={'tableHeaders'}>{result}</WrapperTr>;
 }
 
-function createRow(row) {
+function createRow(row, header) {
     let line = [];
     let result = []
     for (let i in row) {
         let elem = row[i];
         for (let j of Object.keys(elem)) {
-            if(j !== 'id'){
-                line.push(<td key={elem[j]}>{elem[j]}</td>);
-            }
-            
+            line.push(<td key={elem._id+i}>{elem[j]}</td>);
         }
-        result.push(<WrapperTr key={row[i].id}>{line}</WrapperTr>);
+        result.push(<WrapperTr key={row[i]._id}>{line}</WrapperTr>);
         line = [];
     }
     return result;
 
 }
 
-function Table(props) {
-    let headers = props.header;
-    console.log(headers)
-    let jsxHeaders = createThElem(headers);
+const prepareRowData = (row, header) => {
+    let rowData = [];
+    for (let i in row) {
+        rowData.push({});
+        for (let j of Object.keys(header)) {
+            rowData[i][j] = row[i][j];
 
-    let row = [...props.row];
-    console.log(row)
-    let jsxRow = createRow(row);
+        }
+    }
+    console.log(rowData)
+    return rowData;
+}
+
+function Table(props) {
+    const {
+        header,
+        row
+    } = props
+    let jsxHeaders = createThElem(header);
+    let rowNew = prepareRowData(row, header);
+    let jsxRow = createRow(rowNew);
 
     return (
         <table>
-            <thead>
+             
+            
                 {jsxHeaders}
-            </thead>
-            <tbody>
+            
                 {jsxRow}
-            </tbody>
+            
+       
         </table>
     )
 }
