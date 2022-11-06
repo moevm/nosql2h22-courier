@@ -79,6 +79,14 @@ $bgcalpha: rgba(
     }
   }
 
+  &__alightItemStart{
+    & > p {
+      font-size: 32rem;
+      padding-bottom: 28rem;
+    }
+    align-items: flex-start;
+  }
+
   &__order {
   }
 
