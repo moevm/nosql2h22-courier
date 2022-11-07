@@ -12,7 +12,6 @@ const prepareRowData = (row, header) => {
 
         }
     }
-    console.log(rowData)
     return rowData;
 }
 

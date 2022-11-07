@@ -140,10 +140,10 @@ export const createOrdersHead = (setIsOpenPopup) => {
             },
         },
         {
-            text: "Открыть",
+            text: "Информация",
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
-                    {<Button className={Button.style.success + 'button__fs20'} onClick={setIsOpenPopup}>Открыть</Button>}
+                    {<Button className={Button.style.success + 'button__fs20'} onClick={() => setIsOpenPopup(rowIndex)}>Открыть</Button>}
                 </div>,
             headerStyle: (colum, colIndex) => {
                 return {

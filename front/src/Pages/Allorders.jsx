@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import Table from '../Components/Table';
 import CenterPage from '../Components/templateStyle/CenterPage';
-import { createOrdersHead } from '../Components/bd';
+import { createOrdersHead, currentUser } from '../Components/bd';
 import Button from '../Components/Button';
 import request from '../packages/API';
 import OrderPopup from '../Components/UiKit/popup/OrderPopup';
@@ -21,11 +21,18 @@ export const initRowdata = [
 
 
 
-const someComp = (isOpened, onClose) => {
-    console.log('sdfsd')
+const popUpInnerContent = (isOpened, onClose, data) => {
+    console.log(data)
     return (
         <OrderPopup isOpened={isOpened} onClose={onClose}>
-            SOME INFO
+           <div className='container__alightItemStart'>
+                        <p>Поссылка: {data._id}</p>
+                        <p>Ожидаемое время доставки: {data.expected_date}</p>
+                        {data.complete && <p>Фактическое время доставки: {data.real_date}</p>}
+                        <p>Статус: {data.complete ? "Завершено" : "Не завершено"}</p>
+                        <p>Курьер: {data.courier_info[0]} {data.courier_info[1]}</p>
+            </div>
+            <Button className={Button.style.success + "button__fs26"} onClick={onClose} style={{padding:"10rem 80rem", color:"black"}}>Ок</Button>
         </OrderPopup>
     )
 }
@@ -33,20 +40,13 @@ const someComp = (isOpened, onClose) => {
 function Allorders() {
 
     const [rowData, setRowData] = useState();
-   
+    const [currentOrder, setCurrentOrder] = useState('')
     const [openPopup, setOpenPopup] = useState(false)
     const [searchParams] = useSearchParams();
 
     const clearQuery = () => {
         window.location.search = '';
     }
-
-    const onClose = () => {
-        setOpenPopup(!openPopup)
-    }
-
-    const [ordersHeader] = useState(createOrdersHead(onClose));
-
 
     useEffect(() => {
         let filter = Object.fromEntries([...searchParams]);
@@ -56,27 +56,35 @@ function Allorders() {
             if (filter.paid) filter.paid = filter.paid === 'true';
             if (filter.complete) filter.complete = filter.complete === 'true';
 
-            console.log(filter)
             const res = await request.filter.post(filter);
-            console.log(res.data.orders)
             setRowData(res.data.orders);
-            
+
         }
         getData();
     }, []);
-    
+
+    const changeStateProps = (indexPopup) => {
+        setOpenPopup(!openPopup);
+        if(typeof indexPopup == 'number')setCurrentOrder(indexPopup)
+        else setCurrentOrder(null);
+    }
+
+
+
+
+    const [ordersHeader] = useState(createOrdersHead(changeStateProps));
 
     return (
 
         <CenterPage>
-            {openPopup && someComp(openPopup, onClose)}
+            {openPopup && popUpInnerContent(openPopup, changeStateProps, rowData[currentOrder])}
             <div className='containerPage'>
                 <div className='containerPage__title'>
                     <h3>Все заказы</h3>
                     <Button className={Button.style.success + 'button__fs24'} onClick={clearQuery}>Очистить фильтры</Button>
                 </div>
 
-                <Table header={ordersHeader} row={rowData} init={initRowdata}/>
+                <Table header={ordersHeader} row={rowData} init={initRowdata} />
             </div>
         </CenterPage>
 
