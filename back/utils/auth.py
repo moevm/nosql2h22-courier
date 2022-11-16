@@ -39,6 +39,7 @@ def singUp():
 @app.route('/api/auth', methods=["POST"])
 def auth():
     args = request.get_json()
+    print(args)
     try:
         user = jwt.decode(args['token'], app.secret_key)
     except:

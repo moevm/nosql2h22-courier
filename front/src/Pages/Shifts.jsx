@@ -1,5 +1,5 @@
 import React from 'react'
-import { dataShifts, headersShifts } from '../packages/API/bd';
+import { dataShifts, headersShifts } from '../Components/bd';
 import Table from '../Components/Table'
 import CenterPage from '../Components/templateStyle/CenterPage'
 

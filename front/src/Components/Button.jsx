@@ -13,8 +13,8 @@ function Button(props) {
     let text = children;
 
     return (
-        <button onClick={onClick} className='button' style={style}>
-            <div className={"button__" + className}>
+        <button onClick={onClick} className='button' >
+            <div className={"button__" + className} style={style}>
                 <p className={`button__text`}>{text}</p>
                 {image && (<img className="button__image" src={image}/>)}
             </div>
