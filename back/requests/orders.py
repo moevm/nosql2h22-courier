@@ -24,6 +24,7 @@ def orders():
 
 
 @app.route('/api/tracker/find', methods=['POST'])
+@check_admin
 def tracker():
     args = request.get_json()
     return jsonify({"current_tracker_info": get_orders(args)}), 200

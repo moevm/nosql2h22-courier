@@ -5,14 +5,11 @@ from app import app
 
 def check_admin(func):
     def wrapper():
-        token = request.headers.get('Cookie')
-        if token is None:
-            return make_response('Bad access', 403)
         try:
-            user = jwt.decode(token, app.secret_key)
-            if user['type'] != 'a':
-                return make_response('Bad access', 403)
+            if jwt.decode(request.headers.get('Cookie'), app.secret_key)['type'] == 'a':
+                return func()
         except:
             return make_response('Bad access', 403)
-        return func()
+        return make_response('Bad access', 403)
+    wrapper.__name__ = func.__name__
     return wrapper
