@@ -9,6 +9,6 @@ from .db_requests import find
 
 @app.route('/api/autopark', methods=["POST"])
 @check_admin
-def orders():
+def autopark():
     args = request.get_json()
-    return jsonify({"orders": find(args, db.autopark)}), 200
+    return jsonify({"autopark": find(args, db.autopark)}), 200
