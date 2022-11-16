@@ -1,18 +1,24 @@
 $successColor : #89C259;
+$darkSuccessColor :#608440;
+
 $dangerColor : #FE3A3B;
+$darkDangerColor :#a82c2c;
+
 $warningColor : #EC8C46;
+$darkSuccessColor :#608440;
+
 $defaultColor : rgb(128, 128, 128);
 
-@mixin styledButton($color){
+@mixin styledButton($color,$hoverColor){
     background-color: $color;
     transition: all 0.7s ease;
     padding: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
+
     &:hover{
-        background-color: rgba($color: $color, $alpha: 0.7);
-    
+        background-color: rgba($color: $hoverColor, $alpha: 1);
     }
 }
 
@@ -22,6 +28,8 @@ $defaultColor : rgb(128, 128, 128);
     border-radius: 10rem;
     overflow: hidden;
     background-color: black;
+   
+    
     
 
     &__image{
@@ -29,19 +37,19 @@ $defaultColor : rgb(128, 128, 128);
         height: 32rem;
     }
     &__default{
-        @include styledButton($defaultColor);
+        @include styledButton($defaultColor,$darkSuccessColor);
     }
 
     &__success{
-        @include styledButton($successColor);
+        @include styledButton($successColor,$darkSuccessColor);
     }
 
     &__danger{
-        @include styledButton($dangerColor);
+        @include styledButton($dangerColor,$darkDangerColor);
     }
 
     &__warning{
-        @include styledButton($warningColor);
+        @include styledButton($warningColor,$darkSuccessColor);
     }
 
     &__fs20{
