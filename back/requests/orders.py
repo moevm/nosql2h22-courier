@@ -6,7 +6,7 @@ from io import StringIO
 
 
 def get_orders(filter):
-    #print(filter)
+    print(filter)
     if '_id' in filter.keys():
         filter['_id'] = ObjectId(filter['_id'])
     orders = [i for i in db.orders.find(filter)]

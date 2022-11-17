@@ -112,8 +112,6 @@ const GenerateLinks = ({ listLink }) => {
 
 function NavLinks({ position }) {
     let objLink = existPages[position];
-    console.log(objLink)
-
 
     return (
         <nav>

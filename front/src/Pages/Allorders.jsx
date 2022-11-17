@@ -63,7 +63,7 @@ function Allorders() {
     
         }
         getData();
-    });
+    },[searchParams]);
 
     const changeStateProps = (indexPopup) => {
         setOpenPopup(!openPopup);
