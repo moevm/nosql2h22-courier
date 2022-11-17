@@ -18,24 +18,25 @@ export const heaaders = {
 export const createOrdersHead = (setIsOpenPopup) => {
     return ([
         {
-            text:
-                <div>
-                    <p>Номер</p>
-                    <TextFilter queryKey="_id" placeholder={"Token"} type={"text"} />
-                </div>,
+            text:"Номер",
             dataField: '_id',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
                     {cell}
                 </div>,
             headerStyle: (colum, colIndex) => { return { width: '10%', textAlign: 'center', position: 'sticky', top: '0', }; },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey="_id" placeholder={"Token"} type={"text"} />
+                </div>
+                )
+            }
         },
         {
-            text:
-                <div>
-                    <p>Адресс</p>
-                    <TextFilter queryKey="address" placeholder={"Adress"} type={"text"} />
-                </div>,
+            text: "Адресс",
 
             dataField: 'address',
             formatter: (cell, row, rowIndex, extraData) =>
@@ -48,13 +49,18 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     position: 'sticky', top: '0',
                 };
             },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey="address" placeholder={"Adress"} type={"text"} />
+                    </div>
+                )
+            }
         },
         {
-            text:
-                <div>
-                    <p>Доставка к</p>
-                    <DateFilter queryKey="expected_date" />
-                </div>,
+            text: "Доставка к",
             dataField: 'expected_date',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
@@ -66,13 +72,18 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     position: 'sticky', top: '0',
                 };
             },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <DateFilter queryKey="expected_date" />
+                    </div>
+                )
+            }
         },
         {
-            text:
-                <div >
-                    <p> Стоимость</p>
-                    <TextFilter queryKey="cost" placeholder={"Cost"} />
-                </div>,
+            text: "Стоимость",
             dataField: 'cost',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
@@ -84,13 +95,18 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     position: 'sticky', top: '0',
                 };
             },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey="cost" placeholder={"Cost"} />
+                    </div>
+                )
+            }
         },
         {
-            text:
-                <div >
-                    <p> Габариты</p>
-                    <TextFilter queryKey='size' placeholder={"Size"} />
-                </div>,
+            text: "Габариты",
             dataField: 'size',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
@@ -102,13 +118,18 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     position: 'sticky', top: '0',
                 };
             },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey='size' placeholder={"Size"} />
+                    </div>
+                )
+            }
         },
         {
-            text:
-                <div >
-                    <p> Оплачено</p>
-                    <SelectFilter queryKey='paid' value={{ true: 'Да', false: 'Нет' }} />
-                </div>,
+            text: "Оплачено",
             dataField: 'paid',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
@@ -120,13 +141,18 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     position: 'sticky', top: '0',
                 };
             },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <SelectFilter queryKey='paid' value={{ true: 'Да', false: 'Нет' }} />
+                    </div>
+                )
+            }
         },
         {
-            text:
-                <div >
-                    <p> Состояние</p>
-                    <SelectFilter queryKey='complete' value={{ true: 'Да', false: 'Нет' }} />
-                </div>,
+            text: "Состояние",
             dataField: 'complete',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
@@ -138,9 +164,18 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     position: 'sticky', top: '0',
                 };
             },
+            headerFormatter: (column, colIndex) => {
+                return (
+                    <div >
+                        <p> {column.text}</p>
+                        <SelectFilter queryKey='complete' value={{ true: 'Да', false: 'Нет' }} />
+                    </div>
+                )
+            }
         },
         {
             text: "Информация",
+            dataField: ' ',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
                     {<Button className={Button.style.success + 'button__fs20'} onClick={() => setIsOpenPopup(rowIndex)}>Открыть</Button>}
@@ -150,7 +185,7 @@ export const createOrdersHead = (setIsOpenPopup) => {
                     width: '10%', textAlign: 'center',
                     position: 'sticky', top: '0',
                 };
-            },
+            }
         },
 
     ]);

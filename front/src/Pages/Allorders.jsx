@@ -47,21 +47,23 @@ function Allorders() {
     const clearQuery = () => {
         window.location.search = '';
     }
+    
+  
 
     useEffect(() => {
-        let filter = Object.fromEntries([...searchParams]);
-
+        
         const getData = async () => {
+            let filter = Object.fromEntries([...searchParams])
             if (filter.cost) filter.cost = Number(filter.cost);
             if (filter.paid) filter.paid = filter.paid === 'true';
             if (filter.complete) filter.complete = filter.complete === 'true';
-
+    
             const res = await request.filter.post(filter);
             setRowData(res.data.orders);
-
+    
         }
         getData();
-    }, []);
+    });
 
     const changeStateProps = (indexPopup) => {
         setOpenPopup(!openPopup);

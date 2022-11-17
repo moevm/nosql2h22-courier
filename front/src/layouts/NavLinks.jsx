@@ -40,29 +40,22 @@ const translatePage = {
     car_park: "Автопарк"
 }
 
-function DropDownList(props) {
+function DropDownList({ data, header }) {
+
     const [isDroped, setisDroped] = useState(false);
-    const [shit, setShit] = useState(false);
     const ref = useRef();
 
     const dropedData = () => {
         setisDroped(!isDroped)
     }
 
-    const listSwitch = () => {
-        setShit(!shit)
-    };
-
-
-    let select = [];
-    let option = [];
-    for (let i of Object.keys(props.data)) {
-        option.push(<div className='custom_select__option'><NavLink to={props.data[i]}>{translatePage[i]}</NavLink></div>)
-    }
-    select.push(
-        <li>
+    return (
+        <li key={header}>
             <div className='custom_select'>
-                <button className='custom_select__button' onClick={dropedData}>{translatePage[props.header]}<img className={isDroped ? "custom_select__img rotate" : "custom_select__img"} src={arrow}></img></button>
+                <button className='custom_select__button' onClick={dropedData}>
+                    {translatePage[header]}
+                    <img className={isDroped ? "custom_select__img rotate" : "custom_select__img"} src={arrow} />
+                </button>
 
                 <CSSTransition
                     nodeRef={ref}
@@ -73,45 +66,59 @@ function DropDownList(props) {
                     mountOnEnter
                     onEnter={() => setisDroped(true)}
                     onExited={() => setisDroped(false)}>
-                   <div ref={ref}>{option}</div>
+                    <div ref={ref}>
+
+                        {Object.keys(data).map((key) => {
+                            return (
+                                <div className='custom_select__option' key={key + ' ' + data[key]} >
+                                    <NavLink to={data[key]}>
+                                        {translatePage[key]}
+                                    </NavLink>
+                                </div>
+                            )
+                        })}
+
+                    </div>
                 </CSSTransition>
             </div>
         </li>
     );
-    return select;
 }
 
+const GenerateLinks = ({ listLink }) => {
+    return (
+        Object.keys(listLink).map((key, index) => {
+            return (
+                <>
+                    {(typeof listLink[key] == "object") ?
 
-function NavListLink(props) {
-    let links = props.listLink;
-    let nav_links = [];
-    for (let i of Object.keys(links)) {
-        if (typeof links[i] == "object") {
-            nav_links.push(
-                <DropDownList data={links[i]} header={i} />
+                        <DropDownList data={listLink[key]} header={key} />
+                        :
+                        <li key={listLink[key]}>
+                            <NavLink to={listLink[key]}
+                                style={
+                                    ({ isActive }) => isActive ? { color: '#585757' } : null
+                                }
+                            >
+                                {translatePage[key]}
+                            </NavLink>
+                        </li>
+                    }
+                </>
             )
-        } else {
-            nav_links.push(<li><NavLink to={links[i]}
-                style={({ isActive }) =>
-                    isActive ? { color: '#585757' } : undefined
-                }>{translatePage[i]}</NavLink></li>)
-        }
-    }
+        })
+    )
+}
 
-
-    return nav_links;
-};
-
-
-function NavLinks(props) {
-    let objLink = existPages[props.position];
-
+function NavLinks({ position }) {
+    let objLink = existPages[position];
+    console.log(objLink)
 
 
     return (
         <nav>
             <ul>
-                <NavListLink listLink={objLink} />
+                <GenerateLinks listLink={objLink} />
             </ul>
         </nav>
     )

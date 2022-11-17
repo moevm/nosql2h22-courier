@@ -14,7 +14,7 @@ export function TextFilter(props) {
     const refInput = useRef();
     useEffect(()=>{
         let value = filter.setQueryValue(queryKey);
-        if(value)refInput.current.value = value;
+        refInput.current.value = value?value:"";
         
     },[])
 

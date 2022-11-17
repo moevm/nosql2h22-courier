@@ -5,9 +5,11 @@ import queryString from 'query-string';
 const SendFilter = (key, value) => {
 
   let parsedQuery = queryString.parse(window.location.search);
-  if(!value == ''&&!parsedQuery[key]){
+  if (!value == '' && !parsedQuery[key]) {
     parsedQuery[key] = value;
-  }else if (value == '' && parsedQuery[key]){
+  } else if (value !== '' && parsedQuery[key]) {
+    parsedQuery[key] = value;
+  } else if (value == '' && parsedQuery[key]) {
     delete parsedQuery[key];
   }
 
@@ -20,7 +22,7 @@ const SendFilter = (key, value) => {
   }
 }
 
-const setQueryValue = (key)=>{
+const setQueryValue = (key) => {
   let parsedQuery = queryString.parse(window.location.search);
   return parsedQuery[key];
 };

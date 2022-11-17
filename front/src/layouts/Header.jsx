@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { currentUser } from '../Components/bd';
 import CompanyLogo from '../Components/templateStyle/CompanyLogo'
 import NavLinks from './NavLinks';
 import avatar from '../Assets/img/Accountant.png'
@@ -12,7 +11,6 @@ function Header(props) {
   const navigate = useNavigate();
   const {user} = props
 
-  let image = "./img/Accountant.png";
   let name = user.first_name;
   let position = "accountant";// user.role;
 
