@@ -7,13 +7,13 @@ import filter from "../filter";
 export function DateFilter({queryKey}) {
 
     const [state, setState] = useState('')
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState()
 
     useEffect(() => {
         let strTime = filter.setQueryValue(queryKey)
         if (strTime) {
             let value = new Date(strTime)
-            setState(format(value, "yyyy-MM-dd") + "T" + format(value, "HH:mm"));
+            setState(format(value, "yyyy-dd-MM") + "T" + format(value, "HH:mm"));
         }
 
 
@@ -22,15 +22,15 @@ export function DateFilter({queryKey}) {
 
     const onChangeHandler = (event) => {
         let newDate = new Date(event.target.value);
-
+        console.log(format(newDate, 'dd/MM/yyyy hh:mm aa'))
         setState(event.target.value)
-        setDate(format(newDate, 'MM/dd/yyyy h:mm aa'))
+        setDate(format(newDate, 'dd/MM/yyyy hh:mm aa'))
     }
     
     const isEnterPresed = (e) => {
-        console.log(state)
+        
         if (e.key == "Enter") {
-
+            console.log(date)
             filter.SendFilter(queryKey, date);
         }
     }
@@ -39,12 +39,12 @@ export function DateFilter({queryKey}) {
         filter.SendFilter(queryKey, date);
         event.preventDefault();
     }
-
+    
     return (
         <form onSubmit={submitData}>
             <div className='filter'>
                 <label>
-                    <input className="filter__input" type="datetime-local" value={state} onChange={onChangeHandler} onKeyUp={isEnterPresed}/>
+                    <input className="filter__input" name="date" type="datetime-local" value={state} onChange={onChangeHandler} onKeyUp={isEnterPresed}/>
 
                 </label>
                 <input className="filter__input" type="submit" value="Submit" />

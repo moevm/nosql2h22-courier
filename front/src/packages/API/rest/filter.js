@@ -7,7 +7,6 @@ export const post = async (value) => {
         data:{
             ...value,
         },
-        withCredentials: true,
         headers:{
             set_cookie:true
         }

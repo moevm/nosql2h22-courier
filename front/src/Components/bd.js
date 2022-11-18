@@ -2,6 +2,7 @@ import Button from "./Button";
 import check from '../Assets/img/check.png'
 import error from '../Assets/img/error.png';
 import { DateFilter, SelectFilter, TextFilter } from './filter';
+import { format } from "date-fns";
 
 export const heaaders = {
     number: "Номер заказа",
@@ -64,7 +65,7 @@ export const createOrdersHead = (setIsOpenPopup) => {
             dataField: 'expected_date',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
-                    {cell?.replaceAll('/', '-')}
+                    {cell? format(new Date(cell), "MM.dd.yyyy HH:mm"): null}
                 </div>,
             headerStyle: (colum, colIndex) => {
                 return {

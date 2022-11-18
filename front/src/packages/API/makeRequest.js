@@ -7,7 +7,6 @@ export default ({
     params = {},
     data = {},
     headers = {},
-    withCredentials = false,
     HOSTC = HOST
 }) => {
 
@@ -21,7 +20,6 @@ export default ({
         {
             url,
             method,
-            withCredentials,
             headers,
             params,
             data,

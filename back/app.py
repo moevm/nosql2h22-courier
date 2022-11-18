@@ -4,7 +4,7 @@ import pymongo
 
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app)
 app.config['Access-Control-Allow-Origin'] = '*'
 app.secret_key = b'\xf5\xd9v\xe6$\xa1\xb4N.C0\xcc\xe2\xb5i\x8f'
 client = pymongo.MongoClient('localhost', 27017)
