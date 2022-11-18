@@ -1,0 +1,43 @@
+.popup_container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 36rem;
+    box-sizing: border-box;
+
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__overlay{
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background-color: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+    }
+
+    &__info{
+        z-index: 2;
+        width: 600rem;
+        height: 700rem;
+        background-color: white;
+        border-radius: 22rem;
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        align-items:center;
+        padding:  20rem 56rem;
+        flex-direction: column;
+        
+    }
+}

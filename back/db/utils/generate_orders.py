@@ -1,4 +1,4 @@
-","import random
+import random
 import time
 import string
     
@@ -68,4 +68,4 @@ for i in range(N_ORDERS):
         car_info = {"number": car[0], "brand": car[1], "model": car[2], "vin": car[3]}
         courier_info = {"second_name": driver[1], "first_name": driver[0], "fathers_name": driver[2], "email": driver[3], "car_info": car_info}
         cost = random.randint(MIN_COST * 5, MIN_COST * 50)
-    print(f"db.orders.insertOne({{_id: {i}, sender_info: {sender_info}, recipient_info: {recipient_info}, size: {size}, address: {address}, paid: {paid}, expected_date: \"{expected_date}\", real_date: \"{real_date}\", courier_info: {courier_info}, complete: {complete}, cost: {cost}}})")
+    print(f"db.orders.insertOne({{ sender_info: {sender_info}, recipient_info: {recipient_info}, size: {size}, address: {address}, paid: {paid}, expected_date: \"{expected_date}\", real_date: \"{real_date}\", courier_info: {courier_info}, complete: {complete}, cost: {cost}}})")
