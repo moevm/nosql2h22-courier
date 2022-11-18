@@ -14,6 +14,7 @@ import utils.auth
 import requests.orders
 import requests.users
 import requests.autopark
+import requests.workers
 
 
 @app.route('/', methods=['get'])
