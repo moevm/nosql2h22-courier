@@ -29,7 +29,7 @@ const existPages = {
 const translatePage = {
     orders: "Заказы",
     active: "Активные",
-    completes: "Завершенные",
+    completed: "Завершенные",
     my_order: "Мои заказы",
     place_an_order: "Оформить заказ",
     shifts: "Смены",

@@ -51,10 +51,13 @@ function Router() {
                 <Route element={<WrapperPage user={currentUser} />}>
 
                     <Route exact path="/main" element={<Main user={currentUser} />} />
-
-                    <Route element={<Access role={currentUser.type} allowedRole={["driver"]}/>}>
+                    
+                    <Route element={<Access role={currentUser.type} allowedRole={["driver","courier"]} />}>
                         <Route exact path="/orders/active" element={<Allorders />} />
                         <Route exact path="/orders/competed" element={<Allorders />} />
+                    </Route>
+
+                    <Route element={<Access role={currentUser.type} allowedRole={["driver"]} />}>
                         <Route exact path="/carpark" element={<Allorders />} />
                     </Route>
 
@@ -69,16 +72,12 @@ function Router() {
                         <Route exact path="/myorder" element={<Allorders />} />
                     </Route>
 
-                    <Route element={<Access role={currentUser.type} allowedRole={["courier"]} />}>
-                        <Route exact path="/orders/active" element={<Allorders />} />
-                        <Route exact path="/orders/competed" element={<Allorders />} />
-                    </Route>
 
                 </Route>
 
             </Route>
             <Route path='/loading' element={<Loading />} />
-            <Route path='/accessdenied' element={<NoAccess/>}/>
+            <Route path='/accessdenied' element={<NoAccess />} />
         </Routes>
     );
 }
