@@ -14,16 +14,12 @@ import { logout } from '../Reducers/reducer/userReducer'
 function Main({user}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(user)
-  //return;
 
   let name = user.first_name;
-  console.log(name,user.first_name)
   let shift = "Пн-Пт 10:00 - 19:00";
   let position = user.type;
 
   const logoutUser = () =>{
-    //сделать логику по выходу из аккаунта
     dispatch(logout())
     navigate("/");
   }

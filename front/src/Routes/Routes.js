@@ -11,12 +11,11 @@ import Shifts from '../Pages/Shifts';
 import Access from './Access';
 import Loading from '../Pages/InfoPage/Loading';
 import NoAccess from '../Pages/InfoPage/NoAccess';
+import MyOrders from '../Pages/ClientPages/MyOrders';
 
 
 
 function WrapperPage({ user }) {
-
-
     return (
         <div className='page'>
             <Header user={user} />
@@ -28,19 +27,11 @@ function WrapperPage({ user }) {
     )
 }
 
-const role = {
-    u: "client",
-    a: "accountant",
-    c: "courier",
-    d: "driver"
-}
-
 function Router() {
     const user = useSelector(state => state.user);
 
     let currentUser = user.currentUser;
     let isAuth = user.isAuth;
-    if (currentUser.type) currentUser.type = role[currentUser.type];
     return (
         <Routes>
             <Route index exact path="/" element={<LogIn />} />
@@ -51,7 +42,7 @@ function Router() {
                 <Route element={<WrapperPage user={currentUser} />}>
 
                     <Route exact path="/main" element={<Main user={currentUser} />} />
-                    
+
                     <Route element={<Access role={currentUser.type} allowedRole={["driver","courier"]} />}>
                         <Route exact path="/orders/active" element={<Allorders />} />
                         <Route exact path="/orders/competed" element={<Allorders />} />
@@ -69,7 +60,7 @@ function Router() {
 
                     <Route element={<Access role={currentUser.type} allowedRole={["client"]} />}>
                         <Route exact path="/placeanorder" element={<Allorders />} />
-                        <Route exact path="/myorder" element={<Allorders />} />
+                        <Route exact path="/myorder" element={<MyOrders />} />
                     </Route>
 
 

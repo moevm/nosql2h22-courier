@@ -9,11 +9,9 @@ import avatar from '../Assets/img/Accountant.png'
 
 function Header({user}) {
   const navigate = useNavigate();
-  console.log(user)
-  //return;
+ 
   let name = user.first_name;
-  let position = user.type//"accountant";// user.role;
-
+  let position = user.type;
 
   return (
     <div className='header'>
