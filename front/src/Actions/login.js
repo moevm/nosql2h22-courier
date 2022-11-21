@@ -2,6 +2,7 @@ import { setUser } from "../Reducers/reducer/userReducer";
 import request from "../packages/API";
 import storage from "../packages/storage";
 import isValidData from "../Components/isValidData";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -44,12 +45,12 @@ export const auth = (navigate) => {
             dispatch(setUser(res.data.user));
             storage.token.setToken(res.data.token);
             storage.login.setLogin(res.data.user.login);
-            if (window.location.pathname == '/') navigate('/main');
+            if (window.location.pathname == '/' || window.location.pathname == '/loading') window.location = '/main';
             
         } catch (e) {
-            navigate('/');
             storage.token.removeToken();
             storage.login.removeLogin();
+            if (window.location.pathname !== '/') window.location = '/';
         }
     }
 }

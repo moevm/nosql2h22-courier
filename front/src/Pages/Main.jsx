@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button  from '../Components/Button'
 import CenterPage from '../Components/templateStyle/CenterPage'
@@ -11,15 +11,16 @@ import avatar from '../Assets/img/Accountant.png'
 import { logout } from '../Reducers/reducer/userReducer'
 
 
-function Main(props) {
+function Main({user}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentUser = props.user
+  console.log(user)
+  //return;
 
-  let name = currentUser.first_name;
-  console.log(name,currentUser.first_name)
+  let name = user.first_name;
+  console.log(name,user.first_name)
   let shift = "Пн-Пт 10:00 - 19:00";
-  let position = 'Администратор';
+  let position = user.type;
 
   const logoutUser = () =>{
     //сделать логику по выходу из аккаунта

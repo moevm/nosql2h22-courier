@@ -1,107 +1,84 @@
-import React, { useEffect } from 'react'
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import storage, { setStorage } from "../packages/storage";
+import React from 'react'
+import { Outlet, Route, Routes } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
-import { auth } from '../Actions/login';
 import Header from '../layouts/Header';
 import Allorders from '../Pages/Allorders';
 import LogIn from '../Pages/LogIn'
 import Main from '../Pages/Main'
 import TrackingParcels from '../Pages/TrackingParcels';
 import Shifts from '../Pages/Shifts';
+import Access from './Access';
+import Loading from '../Pages/InfoPage/Loading';
+import NoAccess from '../Pages/InfoPage/NoAccess';
 
 
-function WrapperPage(props) {
-    const {
-        children
-    } = props
+
+function WrapperPage({ user }) {
+
 
     return (
         <div className='page'>
-            <Header user={WrapperPage.userInfo} />
+            <Header user={user} />
             <div className='page__content'>
-                {children}
+                <Outlet />
             </div>
         </div>
 
     )
 }
 
+const role = {
+    u: "client",
+    a: "accountant",
+    c: "courier",
+    d: "driver"
+}
+
 function Router() {
+    const user = useSelector(state => state.user);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        setStorage(localStorage);
-        if (storage.token.getToken()) {
-            dispatch(auth(navigate));
-        }
-
-    }, [])
-
-    const currentUser = useSelector(state => state.user).currentUser;
-    WrapperPage.userInfo = currentUser;
+    let currentUser = user.currentUser;
+    let isAuth = user.isAuth;
+    if (currentUser.type) currentUser.type = role[currentUser.type];
     return (
         <Routes>
             <Route index exact path="/" element={<LogIn />} />
             <Route index exact path="/tracking" element={<TrackingParcels />} />
 
-            <Route exact path="/main" element={
-                <WrapperPage>
-                    <Main user={currentUser} />
-                </WrapperPage>} />
+            <Route element={<Access role={'AUTH'} isAuth={isAuth} />}>
 
-            <Route exact path="/orders/active" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>
-            } />
-            <Route exact path="/orders/competed" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+                <Route element={<WrapperPage user={currentUser} />}>
 
-            <Route exact path="/carpark" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+                    <Route exact path="/main" element={<Main user={currentUser} />} />
 
-            <Route exact path="/accounting/statistics" element=
-                {<WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+                    <Route element={<Access role={currentUser.type} allowedRole={["driver"]}/>}>
+                        <Route exact path="/orders/active" element={<Allorders />} />
+                        <Route exact path="/orders/competed" element={<Allorders />} />
+                        <Route exact path="/carpark" element={<Allorders />} />
+                    </Route>
 
-            <Route exact path="/orders/allorder" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+                    <Route element={<Access role={currentUser.type} allowedRole={["accountant"]} />}>
+                        <Route exact path="/accounting/statistics" element={<Allorders />} />
+                        <Route exact path="/orders/allorder" element={<Allorders />} />
+                        <Route exact path="/shifts" element={<Shifts />} />
+                    </Route>
 
-            <Route exact path="/shifts" element={
-                <WrapperPage>
-                    <Shifts />
-                </WrapperPage>} />
+                    <Route element={<Access role={currentUser.type} allowedRole={["client"]} />}>
+                        <Route exact path="/placeanorder" element={<Allorders />} />
+                        <Route exact path="/myorder" element={<Allorders />} />
+                    </Route>
 
-            <Route exact path="/placeanorder" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+                    <Route element={<Access role={currentUser.type} allowedRole={["courier"]} />}>
+                        <Route exact path="/orders/active" element={<Allorders />} />
+                        <Route exact path="/orders/competed" element={<Allorders />} />
+                    </Route>
 
-            <Route exact path="/myorder" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+                </Route>
 
-            <Route exact path="/orders/active" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
-
-            <Route exact path="/orders/competed" element={
-                <WrapperPage>
-                    <Allorders />
-                </WrapperPage>} />
+            </Route>
+            <Route path='/loading' element={<Loading />} />
+            <Route path='/accessdenied' element={<NoAccess/>}/>
         </Routes>
     );
 }
