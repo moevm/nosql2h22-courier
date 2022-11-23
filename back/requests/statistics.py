@@ -3,7 +3,7 @@ from app import app, db
 
 import itertools
 from .decorators import check_admin, check_access
-from .db_requests import delay_requests, month_stats
+from .db_requests import month_stats
 
 
 @app.route('/api/stats/delays', methods=['POST'])
@@ -26,7 +26,6 @@ def worker_stats():
             }
         }
     }]
-
     return jsonify(month_stats(db.orders, pipeline, month_range=args['range'])), 200
 
 
