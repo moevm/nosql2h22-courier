@@ -5,20 +5,10 @@ import Table from '../../Components/Table';
 import CenterPage from '../../Components/templateStyle/CenterPage';
 import { userOrders } from '../../Components/bd';
 import request from '../../packages/API';
-
-export const initRowdata = [
-    "_id",
-    "address",
-    "expected_date",
-    "cost",
-    "size",
-    "paid",
-    "Open"
-];
+import storage from '../../packages/storage';
 
 function MyOrders() {
-
-    const [rowData, setRowData] = useState();
+    const [rowData, setRowData] = useState([]);
     const [ordersHeader] = useState(userOrders())
     const [searchParams] = useSearchParams();
 
@@ -29,24 +19,26 @@ function MyOrders() {
     useEffect(() => {
 
         const getData = async () => {
-            let filter = Object.fromEntries([...searchParams])
-            if (filter.cost) filter.cost = Number(filter.cost);
-            if (filter.paid) filter.paid = filter.paid === 'true';
+            console.log(storage.login.getLogin());
+            const res = await request.clientOrders.post(storage.login.getLogin());
 
-            const res = await request.filter.post(filter);
-            setRowData(res.data.orders);
+            setRowData(res.data.my_orders);
         }
-        //getData();
+        getData();
     }, [searchParams])
 
     return (
         <CenterPage>
             <div className='containerPage'>
-                <div className='containerPage__title'>
-                    <h3>Все заказы</h3>
-                    <Button className={Button.style.success + 'button__fs24'} onClick={clearQuery}>Очистить фильтры</Button>
-                </div>
-                <Table header={ordersHeader} row={rowData} init={initRowdata} />
+                {rowData.length ?
+                    <>
+                        <div className='containerPage__title'>
+                            <h3>Все заказы</h3>
+                            <Button className={Button.style.success + 'button__fs24'} onClick={clearQuery}>Очистить фильтры</Button>
+                        </div>
+                        <Table header={ordersHeader} row={rowData}/>
+                    </>
+                    : <h1>У вас не было еще заказов</h1>}
             </div>
         </CenterPage>
 

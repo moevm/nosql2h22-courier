@@ -4,7 +4,8 @@ import * as tracker from './rest/tracker';
 import * as shifts from './rest/shifts';
 import * as orders from './rest/orders';
 import * as signup from './rest/signup';
-import * as filter from './rest/filter'
+import * as filter from './rest/filter';
+import * as clientOrders from './rest/clientOrders';
 
 
 export default {
@@ -14,6 +15,7 @@ export default {
     shifts,
     orders,
     signup,
-    filter
+    filter,
+    clientOrders
 }
 

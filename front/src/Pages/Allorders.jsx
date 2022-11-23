@@ -8,18 +8,6 @@ import Button from '../Components/Button';
 import request from '../packages/API';
 import OrderPopup from '../Components/UiKit/popup/OrderPopup';
 
-export const initRowdata = [
-    "_id",
-    "address",
-    "expected_date",
-    "cost",
-    "size",
-    "paid",
-    "complete",
-    "Open"
-];
-
-
 
 const popUpInnerContent = (isOpened, onClose, data) => {
     console.log(data)
@@ -87,7 +75,7 @@ function Allorders() {
                     <Button className={Button.style.success + 'button__fs24'} onClick={clearQuery}>Очистить фильтры</Button>
                 </div>
 
-                <Table header={ordersHeader} row={rowData} init={initRowdata} />
+                <Table header={ordersHeader} row={rowData} />
             </div>
         </CenterPage>
 

@@ -19,11 +19,11 @@ function Table(props) {
     const {
         header,
         row,
-        init,
+        init = [' '],
         keyField = init[0]
     } = props
 
-    let rowNew = prepareRowData(row, init);
+    let rowNew = prepareRowData(row, header.map((obj)=> obj.dataField));
 
 
     return (

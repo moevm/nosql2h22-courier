@@ -1,10 +1,9 @@
 import makeRequest from "../makeRequest";
 
-export const post = async () => {
+export const get = async () => {
     return await makeRequest({
-        url: '/api/shifts',
-        method: 'POST',
-        withCredentials: true,
+        url: '/api/workers',
+        method: 'GET',
         headers:{
             set_cookie:true,
         }
