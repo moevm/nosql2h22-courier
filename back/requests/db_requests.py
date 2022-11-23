@@ -10,7 +10,6 @@ def find(filter, db):
 
 
 def find_user_orders(user, db):
-    res = [i for i in db.find({"sender_info": user})]
-    [res.append(i) for i in db.find({"recipient_info": user}) if i is not None]
+    res = list(db.find({'$or': [{"sender_info": user}, {"recipient_info": user}]}))
     [i.__setitem__('_id', str(i["_id"])) for i in res]
     return res
