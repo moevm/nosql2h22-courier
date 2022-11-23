@@ -15,12 +15,17 @@ def users():
     return jsonify({"users": find(args, db.users)}), 200
 
 
-@app.route('/api/user/my_orders', methods=['POST'])
+@app.route('/api/user/my_orders', methods=['GET'])
 @check_access
 def my_orders():
-    args = request.get_json()
-    print(args)
-    return jsonify({"my_orders": find_user_orders(args['user'], db.orders)}), 200
+    user = jwt.decode(request.headers.get('Set_cookie'), app.secret_key)
+    args = {
+        'second_name': user['second_name'],
+        'first_name': user['first_name'],
+        'fathers_name': user['fathers_name'],
+        'email': user['login']
+    }
+    return jsonify({"my_orders": find_user_orders(args, db.orders)}), 200
 
 
 @app.route('/api/user/generate-access-token/<token>', methods=['GET'])
