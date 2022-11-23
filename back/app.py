@@ -15,6 +15,7 @@ import requests.orders
 import requests.users
 import requests.autopark
 import requests.workers
+import requests.statistics
 
 
 @app.route('/', methods=['get'])

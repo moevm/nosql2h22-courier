@@ -5,7 +5,7 @@ import datetime
 
 
 def create_jwt(user):
-    user['exp'] = datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+    user['exp'] = datetime.datetime.utcnow() + datetime.timedelta(hours=10)
     token = jwt.encode(user, app.secret_key)
     del user['exp']
     return token.decode("utf-8")
