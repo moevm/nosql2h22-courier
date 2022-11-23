@@ -32,26 +32,19 @@ def delay_requests(db, user):
     return res
 
 
-def month_stats_by_courier(db):
+def month_stats(db, elem, month_range):
     data = datetime.now()
+    gte = datetime(data.year, data.month - month_range, monthrange(data.year, data.month - month_range)[1]) if data.month - month_range >= 1 else datetime(data.year-1, 12 - (data.month - month_range), monthrange(data.year-1, 12 - (data.month - month_range))[1])
+    lte = datetime(data.year, data.month + month_range, 1) if data.month + month_range <= 12 else datetime(data.year+1, 12 - data.month + month_range, 1)
+
     res = list(db.aggregate([
         {
             '$match': {
                 'expected_date': {
-                    '$gte': datetime(data.year, data.month - 1, monthrange(data.year, data.month - 1)[1]),
-                    '$lte': datetime(data.year, data.month + 1, 1)
+                    '$gte': gte,
+                    '$lte': lte
                 }
             }
-        }, {
-            '$group': {
-                '_id': '$courier_info',
-                'sum_val': {
-                    '$sum': '$cost'
-                },
-                'count': {
-                    '$sum': 1
-                }
-            }
-        }
+        }, elem
     ]))
     return res
