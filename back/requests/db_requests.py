@@ -1,3 +1,5 @@
+from datetime import datetime
+from calendar import monthrange
 from bson import ObjectId
 
 
@@ -23,8 +25,33 @@ def find_workers(db):
 
 def delay_requests(db, user):
     if len(user.keys()) != 0:
-        res = list(db.orders.find({'$where': 'this.expected_date < this.real_date', 'courier_info.email': user['email']}))
+        res = list(db.find({'$where': 'this.expected_date < this.real_date', 'courier_info.email': user['email']}))
     else:
-        res = list(db.orders.find({'$where': 'this.expected_date < this.real_date'}))
+        res = list(db.find({'$where': 'this.expected_date < this.real_date'}))
     [i.__setitem__('_id', str(i["_id"])) for i in res]
+    return res
+
+
+def month_stats_by_courier(db):
+    data = datetime.now()
+    res = list(db.aggregate([
+        {
+            '$match': {
+                'expected_date': {
+                    '$gte': datetime(data.year, data.month - 1, monthrange(data.year, data.month - 1)[1]),
+                    '$lte': datetime(data.year, data.month + 1, 1)
+                }
+            }
+        }, {
+            '$group': {
+                '_id': '$courier_info',
+                'sum_val': {
+                    '$sum': '$cost'
+                },
+                'count': {
+                    '$sum': 1
+                }
+            }
+        }
+    ]))
     return res
