@@ -23,28 +23,18 @@ def find_workers(db):
     return res
 
 
-def delay_requests(db, user):
-    if len(user.keys()) != 0:
-        res = list(db.find({'$where': 'this.expected_date < this.real_date', 'courier_info.email': user['email']}))
-    else:
-        res = list(db.find({'$where': 'this.expected_date < this.real_date'}))
-    [i.__setitem__('_id', str(i["_id"])) for i in res]
-    return res
-
-
 def month_stats(db, elem, month_range):
     data = datetime.now()
     gte = datetime(data.year, data.month - month_range, monthrange(data.year, data.month - month_range)[1]) if data.month - month_range >= 1 else datetime(data.year-1, 12 - (data.month - month_range), monthrange(data.year-1, 12 - (data.month - month_range))[1])
     lte = datetime(data.year, data.month + month_range, 1) if data.month + month_range <= 12 else datetime(data.year+1, 12 - data.month + month_range, 1)
-
-    res = list(db.aggregate([
-        {
+    pipeline = [{
             '$match': {
                 'expected_date': {
                     '$gte': gte,
                     '$lte': lte
                 }
             }
-        }, elem
-    ]))
+        }]
+    [pipeline.append(i) for i in elem]
+    res = list(db.aggregate(pipeline))
     return res

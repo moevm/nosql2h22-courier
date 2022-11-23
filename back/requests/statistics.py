@@ -10,14 +10,31 @@ from .db_requests import delay_requests, month_stats
 @check_admin
 def worker_stats():
     args = request.get_json()
-    return jsonify(delay_requests(db.orders, args)), 200
+    pipeline = [{
+        '$match': {
+            '$expr': {
+                '$gt': [
+                    '$real_date', '$expected_date'
+                ]
+            }
+        }
+    }, {
+        '$group': {
+            '_id': '$courier_info',
+            'count': {
+                '$sum': 1
+            }
+        }
+    }]
+
+    return jsonify(month_stats(db.orders, pipeline, month_range=args['range'])), 200
 
 
-@app.route('/api/stats/month_stats_by_courier', methods=['GET'])
+@app.route('/api/stats/month_stats_by_courier', methods=['POST'])
 @check_admin
 def month_stats_by_courier():
     args = request.get_json()
-    pipeline = {
+    pipeline = [{
             '$group': {
                 '_id': '$courier_info',
                 'sum_val': {
@@ -27,5 +44,23 @@ def month_stats_by_courier():
                     '$sum': 1
                 }
             }
-        }
+        }]
+    return jsonify(month_stats(db.orders, pipeline, month_range=args['range'])), 200
+
+
+@app.route('/api/stats/company_money_stats', methods=['POST'])
+@check_admin
+def company_money_stats():
+    args = request.get_json()
+    pipeline = [{
+            '$group': {
+                '_id': None,
+                'sum_val': {
+                    '$sum': '$cost'
+                },
+                'count': {
+                    '$sum': 1
+                }
+            }
+        }]
     return jsonify(month_stats(db.orders, pipeline, month_range=args['range'])), 200
