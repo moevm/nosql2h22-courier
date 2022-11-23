@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import Button from "../Button";
 import { DateFilter, SelectFilter, TextFilter } from "../filter";
 
 export const completeOrdersHeader = () => {
