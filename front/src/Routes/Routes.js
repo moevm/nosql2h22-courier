@@ -12,6 +12,7 @@ import Access from './Access';
 import Loading from '../Pages/InfoPage/Loading';
 import NoAccess from '../Pages/InfoPage/NoAccess';
 import MyOrders from '../Pages/ClientPages/MyOrders';
+import PlaceAnOrder from '../Pages/ClientPages/PlaceAnOrder';
 
 
 
@@ -59,7 +60,7 @@ function Router() {
                     </Route>
 
                     <Route element={<Access role={currentUser.type} allowedRole={["client"]} />}>
-                        <Route exact path="/placeanorder" element={<Allorders />} />
+                        <Route exact path="/placeanorder" element={<PlaceAnOrder />} />
                         <Route exact path="/myorder" element={<MyOrders />} />
                     </Route>
 
