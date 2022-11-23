@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, jsonify
 from app import app, db
 import json
 import jwt
-
+from utils.users import delete_pass_from_users
 from .decorators import check_admin, check_access
 from .db_requests import find, find_user_orders
 
@@ -12,7 +12,8 @@ from .db_requests import find, find_user_orders
 def users():
     args = request.get_json()
     args['type'] = 'u'
-    return jsonify({"users": find(args, db.users)}), 200
+    users = {"users": find(args, db.users)}
+    return jsonify(delete_pass_from_users(users)), 200
 
 
 @app.route('/api/user/my_orders', methods=['POST'])

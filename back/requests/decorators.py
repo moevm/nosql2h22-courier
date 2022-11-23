@@ -8,7 +8,8 @@ def check_admin(func):
         try:
             if jwt.decode(request.headers.get('Set_cookie'), app.secret_key)['type'] == 'a':
                 return func()
-        except:
+        except Exception as e:
+            print("Exception: ", e) # get info about exception
             return make_response('Bad access', 403)
         return make_response('Bad access', 403)
     wrapper.__name__ = func.__name__
@@ -20,9 +21,9 @@ def check_access(func):
         try:
             if jwt.decode(request.headers.get('Set_cookie'), app.secret_key)['type']:
                 return func()
-        except:
+        except Exception as e:
+            print("Exception: ", e) # get info about exception
             return make_response('Bad access', 403)
         return make_response('Bad access', 403)
     wrapper.__name__ = func.__name__
     return wrapper
-
