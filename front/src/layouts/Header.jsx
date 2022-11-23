@@ -7,12 +7,11 @@ import avatar from '../Assets/img/Accountant.png'
 
 
 
-function Header(props) {
+function Header({user}) {
   const navigate = useNavigate();
-  const {user} = props
-
+ 
   let name = user.first_name;
-  let position = "accountant";// user.role;
+  let position = user.type;
 
   return (
     <div className='header'>

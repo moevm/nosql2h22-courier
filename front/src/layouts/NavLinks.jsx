@@ -29,7 +29,7 @@ const existPages = {
 const translatePage = {
     orders: "Заказы",
     active: "Активные",
-    completes: "Завершенные",
+    completed: "Завершенные",
     my_order: "Мои заказы",
     place_an_order: "Оформить заказ",
     shifts: "Смены",
@@ -89,22 +89,19 @@ const GenerateLinks = ({ listLink }) => {
     return (
         Object.keys(listLink).map((key, index) => {
             return (
-                <>
-                    {(typeof listLink[key] == "object") ?
+                (typeof listLink[key] == "object") ?
 
-                        <DropDownList data={listLink[key]} header={key} />
-                        :
-                        <li key={listLink[key]}>
-                            <NavLink to={listLink[key]}
-                                style={
-                                    ({ isActive }) => isActive ? { color: '#585757' } : null
-                                }
-                            >
-                                {translatePage[key]}
-                            </NavLink>
-                        </li>
-                    }
-                </>
+                    <DropDownList data={listLink[key]} header={key} />
+                    :
+                    <li key={listLink[key]}>
+                        <NavLink to={listLink[key]}
+                            style={
+                                ({ isActive }) => isActive ? { color: '#585757' } : null
+                            }
+                        >
+                            {translatePage[key]}
+                        </NavLink>
+                    </li>
             )
         })
     )

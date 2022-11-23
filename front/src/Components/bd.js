@@ -192,6 +192,161 @@ export const createOrdersHead = (setIsOpenPopup) => {
     ]);
 }
 
+
+export const userOrders = () => {
+    return ([
+        {
+            text:"Номер",
+            dataField: '_id',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {cell}
+                </div>,
+            headerStyle: (colum, colIndex) => { return { width: '10%', textAlign: 'center', position: 'sticky', top: '0', }; },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey="_id" placeholder={"Token"} type={"text"} />
+                </div>
+                )
+            }
+        },
+        {
+            text: "Адресс",
+
+            dataField: 'address',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {cell}
+                </div>,
+            headerStyle: (colum, colIndex) => {
+                return {
+                    width: '20%', textAlign: 'center',
+                    position: 'sticky', top: '0',
+                };
+            },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey="address" placeholder={"Adress"} type={"text"} />
+                    </div>
+                )
+            }
+        },
+        {
+            text: "Доставка к",
+            dataField: 'expected_date',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {cell? format(new Date(cell), "MM.dd.yyyy HH:mm"): null}
+                </div>,
+            headerStyle: (colum, colIndex) => {
+                return {
+                    width: '10%', textAlign: 'center',
+                    position: 'sticky', top: '0',
+                };
+            },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <DateFilter queryKey="expected_date" />
+                    </div>
+                )
+            }
+        },
+        {
+            text: "Стоимость",
+            dataField: 'cost',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {cell}
+                </div>,
+            headerStyle: (colum, colIndex) => {
+                return {
+                    width: '10%', textAlign: 'center',
+                    position: 'sticky', top: '0',
+                };
+            },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey="cost" placeholder={"Cost"} />
+                    </div>
+                )
+            }
+        },
+        {
+            text: "Габариты",
+            dataField: 'size',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {cell}
+                </div>,
+            headerStyle: (colum, colIndex) => {
+                return {
+                    width: '10%', textAlign: 'center',
+                    position: 'sticky', top: '0',
+                };
+            },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <TextFilter queryKey='size' placeholder={"Size"} />
+                    </div>
+                )
+            }
+        },
+        {
+            text: "Оплачено",
+            dataField: 'paid',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {cell ? <img src={check} /> : <img src={error} />}
+                </div>,
+            headerStyle: (colum, colIndex) => {
+                return {
+                    width: '10%', textAlign: 'center',
+                    position: 'sticky', top: '0',
+                };
+            },
+            headerFormatter: (column, colIndex) => {
+                return (
+
+                    <div >
+                        <p> {column.text}</p>
+                        <SelectFilter queryKey='paid' value={{ true: 'Да', false: 'Нет' }} />
+                    </div>
+                )
+            }
+        },
+        {
+            text: "Информация",
+            dataField: ' ',
+            formatter: (cell, row, rowIndex, extraData) =>
+                <div className='table-cell'>
+                    {<Button className={Button.style.success + 'button__fs20'} onClick={() => window.location = '/tracking'}>Открыть</Button>}
+                </div>,
+            headerStyle: (colum, colIndex) => {
+                return {
+                    width: '10%', textAlign: 'center',
+                    position: 'sticky', top: '0',
+                };
+            }
+        },
+
+    ]);
+}
+
 export const headersShifts = {
     fullName: "ФИО",
     position: "Должность",
