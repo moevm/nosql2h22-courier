@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  backend:
+    build: ./back
+    network_mode: "host"
+    container_name: courier-backend
+  frontend:
+    build: ./front
+    network_mode: "host"
+    container_name: courier-frontend
+  mongo:
+    network_mode: "host"
+    image: mongo:latest
+    restart: always
+    container_name: courier-db
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+      - courier-db-content:/data/db
+
+volumes:
+  courier-db-content:
