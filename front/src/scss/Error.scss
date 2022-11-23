@@ -1,0 +1,31 @@
+.forbidden{
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__code_error{
+        font-size: 124rem;
+        font-weight: 600;
+    }
+
+    &__discription{
+        font-size: 26rem;
+        font-weight: 500;
+    }
+    &__info{
+        margin-top: 80rem;
+        color: rgba(32, 30, 28, 0.603);
+    }
+
+    &__button{
+        padding: 15rem 60rem;
+        background-color: rgb(242, 210, 168);
+        border-radius: 22rem;
+        color: rgba(32, 30, 28, 0.603);
+        margin-top: 15rem
+    }
+}

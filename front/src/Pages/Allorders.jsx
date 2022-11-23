@@ -63,6 +63,7 @@ function Allorders() {
     
         }
         getData();
+        return(()=> setRowData({}));
     },[searchParams]);
 
     const changeStateProps = (indexPopup) => {

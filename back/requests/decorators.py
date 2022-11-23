@@ -6,9 +6,6 @@ from app import app
 def check_admin(func):
     def wrapper():
         try:
-            print(request.headers)
-            print(request.headers.get('Set_cookie'))
-            print(jwt.decode(request.headers.get('Set_cookie'), app.secret_key))
             if jwt.decode(request.headers.get('Set_cookie'), app.secret_key)['type'] == 'a':
                 return func()
         except Exception as e:

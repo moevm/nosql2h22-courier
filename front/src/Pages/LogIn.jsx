@@ -1,23 +1,32 @@
 
 
 import React, { useRef, useState } from 'react'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
-import { Login } from '../Actions/login';
+import { auth, Login } from '../Actions/login';
 import { Registration } from '../Actions/registration';
 import Button from '../Components/Button'
 import InputTitleup from '../Components/InputTitleup'
 import CenterPage from '../Components/templateStyle/CenterPage'
 import CompanyLogo from '../Components/templateStyle/CompanyLogo'
 import Container from '../Components/templateStyle/Container'
+import { useEffect } from 'react';
+import storage from '../packages/storage';
 
 export default function LogIn() {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const [isRegistration, setIsRegistration] = useState(false);
+    const [isAuth] = useState(useSelector(state => state.user).isAuth)
     const dispatch = useDispatch();
-
+    console.log(isAuth)
+    // useEffect(()=>{
+    //     console.log(isAuth)
+    //     if (isAuth) {
+    //         navigate('/main');
+    //     }
+    // },[])
 
     const emailRef = useRef();
     const passwordRef = useRef();
