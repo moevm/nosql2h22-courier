@@ -16,16 +16,18 @@ def users():
     return jsonify(delete_pass_from_users(users)), 200
 
 
-@app.route('/api/user/my_orders', methods=['GET'])
+@app.route('/api/user/my_orders', methods=['POST'])
 @check_access
 def my_orders():
     user = jwt.decode(request.headers.get('Set_cookie'), app.secret_key)
-    args = {
+    user = {
         'second_name': user['second_name'],
         'first_name': user['first_name'],
         'fathers_name': user['fathers_name'],
         'email': user['login']
     }
+    args = request.get_json()
+    args['$or'] = [{"sender_info": user}, {"recipient_info": user}]
     return jsonify({"my_orders": find_user_orders(args, db.orders)}), 200
 
 

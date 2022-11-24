@@ -14,11 +14,15 @@ def find(filter, db):
 
 
 def find_user_orders(user, db):
-    res = list(db.find({'$or': [{"sender_info": user}, {"recipient_info": user}]}))
+    res = list(db.find(user))
     [i.__setitem__('_id', str(i["_id"])) for i in res]
     return res
 
 
+def find_worker_orders(user, db):
+    res = list(db.find(user))
+    [i.__setitem__('_id', str(i["_id"])) for i in res]
+    return res
 
 def make_mongo_filter(filter: Dict[str, Any]) -> Dict[str, Any]:
     """
