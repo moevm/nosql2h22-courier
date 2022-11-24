@@ -1,0 +1,20 @@
+.placeOrder{
+    font-size: 26rem;
+    &__block{
+        & > p{
+            margin-right: 60rem;
+        }
+        margin: 13rem 0 ;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__cost{
+        display: flex;
+        justify-content: space-between;
+
+        margin: 76rem 0 36rem;
+        font-size: 30rem;
+        
+    }
+}

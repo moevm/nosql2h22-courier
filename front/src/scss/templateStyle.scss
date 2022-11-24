@@ -51,6 +51,11 @@ $bgcalpha: rgba(
     border-radius: 12rem;
   }
 
+  &__order {
+    padding: 60rem 120rem;
+    @include styledContainer();
+  }
+
   &__profile {
   }
 
@@ -79,15 +84,12 @@ $bgcalpha: rgba(
     }
   }
 
-  &__alightItemStart{
+  &__alightItemStart {
     & > p {
       font-size: 32rem;
       padding-bottom: 28rem;
     }
     align-items: flex-start;
-  }
-
-  &__order {
   }
 
   &__wrapped {
@@ -146,6 +148,14 @@ $bgcalpha: rgba(
       border-radius: 20rem;
       padding: 15rem 15rem;
       font-size: 24rem;
+    }
+  }
+
+  &__order {
+    & > input {
+      padding: 12rem 18rem ;
+      border-radius: 22rem;
+      font-size: 26rem;
     }
   }
 }
@@ -230,4 +240,3 @@ $bgcalpha: rgba(
     margin-top: 10rem;
   }
 }
-

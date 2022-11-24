@@ -17,7 +17,7 @@ function InputTitleup(props) {
         <div className='custom_input'>
             <div className={className} >
                 {!isTitleUp && <div className='custom_input__display_flex'><p>{placeholder}</p> {isNecessarily && <div className='txt_danger mes'>*</div>}</div>}
-                <input ref={refTo} type={type} pattern={pattern} onKeyUp={onKeyUp} />
+                <input ref={refTo} type={type} pattern={pattern} onKeyUp={onKeyUp} placeholder={isTitleUp?placeholder:""}/>
             </div>
         </div>
 
