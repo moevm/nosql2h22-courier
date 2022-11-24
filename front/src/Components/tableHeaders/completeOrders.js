@@ -120,7 +120,7 @@ export const completeOrdersHeader = () => {
             dataField: 'complete',
             formatter: (cell, row, rowIndex, extraData) =>
                 <div className='table-cell'>
-                    {cell ? <Button className={Button.style.success + 'button__fs20'}>Отправлено</Button> : <Button className={Button.style.danger + 'button__fs20'}>Не прибыло</Button>}
+                    {cell ? <Button className={Button.style.success + 'button__fs20'}>Доставлено</Button> : <Button className={Button.style.danger + 'button__fs20'}>Не прибыло</Button>}
                 </div>,
             headerStyle: (colum, colIndex) => {
                 return {

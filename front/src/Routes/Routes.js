@@ -13,6 +13,7 @@ import Loading from '../Pages/InfoPage/Loading';
 import NoAccess from '../Pages/InfoPage/NoAccess';
 import MyOrders from '../Pages/ClientPages/MyOrders';
 import PlaceAnOrder from '../Pages/ClientPages/PlaceAnOrder';
+import CompleteOrders from '../Pages/CoureirPages/CompletedOrders';
 
 
 
@@ -46,7 +47,7 @@ function Router() {
 
                     <Route element={<Access role={currentUser.type} allowedRole={["driver","courier"]} />}>
                         <Route exact path="/orders/active" element={<Allorders />} />
-                        <Route exact path="/orders/competed" element={<Allorders />} />
+                        <Route exact path="/orders/competed" element={<CompleteOrders />} />
                     </Route>
 
                     <Route element={<Access role={currentUser.type} allowedRole={["driver"]} />}>

@@ -1,10 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
-import Table from '../Components/Table';
-import CenterPage from '../Components/templateStyle/CenterPage';
-import Button from '../Components/Button';
-import request from '../packages/API';
+import Table from '../../Components/Table';
+import CenterPage from '../../Components/templateStyle/CenterPage';
+import Button from '../../Components/Button';
+import request from '../../packages/API';
 import { completeOrdersHeader } from '../../Components/tableHeaders/completeOrders';
 
 
@@ -26,8 +26,9 @@ function CompleteOrders() {
             if (filter.paid) filter.paid = filter.paid === 'true';
             if (filter.complete) filter.complete = filter.complete === 'true';
     
-            const res = await request.filter.post(filter);
-            setRowData(res.data.orders);
+            const res = await request.completeOrders.post(filter);
+            console.log(res.data.my_orders)
+            setRowData(res.data.my_orders);
     
         }
         getData();
