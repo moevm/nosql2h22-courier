@@ -3,16 +3,24 @@ import BootstrapTable from 'react-bootstrap-table-next';
 
 
 
-const prepareRowData = (row, header) => {
-    let rowData = [];
-    for (let i in row) {
-        rowData.push({});
+const prepareRowData = (rawData, header) => {
+    let dataForTable = [];
+    for (let i in rawData) {
+        dataForTable.push({});
         for (let j of header) {
-            rowData[i][j] = row[i][j];
+            console.log(i, j, rawData[i][j])
+            let itemData = rawData[i][j];
+            if (j === "cost"){
+                itemData = `${itemData} р.`;
+            }
+            if (j === "size"){
+                itemData = `${itemData[0]}x${itemData[1]}x${itemData[2]} ${itemData[3]} кг`;
+            }
+            dataForTable[i][j] = itemData;
 
         }
     }
-    return rowData;
+    return dataForTable;
 }
 
 function Table(props) {
