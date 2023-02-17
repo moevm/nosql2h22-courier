@@ -6,6 +6,7 @@ import * as orders from './rest/orders';
 import * as signup from './rest/signup';
 import * as filter from './rest/filter';
 import * as clientOrders from './rest/clientOrders';
+import * as completeOrders from './rest/completeOrders';
 
 
 export default {
@@ -16,6 +17,7 @@ export default {
     orders,
     signup,
     filter,
-    clientOrders
+    clientOrders,
+    completeOrders
 }
 
